@@ -1,0 +1,55 @@
+<?php
+
+    $this->headTitle('Cadastro de Campo para Pergunta');
+
+    $this->mainMenu()->setActiveItemId('quiz');
+    $this->mainMenu()->setActiveListItemId('Campos');
+
+    $this->pageBreadcrumbs()->setItems([
+                'Inicio'=>$this->url('home'),
+                'Gerenciamento de Campos para Perguntas'=>$this->url('quizField'),
+                'Cadastro de Campo para Pergunta'=>$this->url('quizField', ['action'=>'add'])
+                ]);
+
+    $form->get('label')->setAttributes([
+        'class'=>'form-control',
+        'placeholder'=>'Label',
+        ]);
+
+    $form->get('sequence')->setAttributes([
+        'class' => 'form-control',
+        ]);
+
+    $form->get('submit')->setAttributes(['class'=>'btn btn-danger']);
+
+    $form->prepare();
+?>
+<div class="container">
+
+
+<div class="row">
+    <?= $this->partial('cms/partial/alert'); ?>
+</div>
+
+<?= $this->form()->openTag($form); ?>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <?= $this->formLabel($form->get('label')); ?>
+                <?= $this->formElement($form->get('label')); ?>
+                <?= $this->formElementErrors($form->get('label')); ?>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <?= $this->formLabel($form->get('sequence')); ?>
+                <?= $this->formElement($form->get('sequence')); ?>
+                <?= $this->formElementErrors($form->get('sequence')); ?>
+            </div>
+        </div>
+    </div>
+
+<?= $this->form()->closeTag(); ?>
+
+</div>

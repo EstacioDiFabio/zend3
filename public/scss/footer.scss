@@ -1,0 +1,9 @@
+@import 'variables/colours';
+
+.footer{
+    position: absolute;
+    left: 0 ; right: 0; bottom: 0;
+    /*background-image: linear-gradient(to bottom, $red-windel-slight 0, $red-windel-intense 100%);
+    color: $white;*/
+    padding-top: 10px;
+}

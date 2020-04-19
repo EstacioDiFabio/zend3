@@ -1,0 +1,70 @@
+<?php
+
+    $this->headTitle('Cadastro de Produtos');
+
+    $this->mainMenu()->setActiveItemId('quiz');
+    $this->mainMenu()->setActiveListItemId('Produtos');
+
+    $this->pageBreadcrumbs()->setItems([
+                'Inicio'=>$this->url('home'),
+                'Gerenciamento de Produtos' => $this->url('produto'),
+                'Cadastro de Produto' => $this->url('produto', ['action'=>'add'])
+                ]);
+
+    $form->get('nome')
+         ->setAttributes(['class'=>'form-control',
+                          'placeholder'=>'Nome']);
+
+    $form->get('status')
+         ->setAttributes(['class'=>'form-control', 'value' => '1']);
+
+    $form->get('submit')->setAttributes(['class'=>'btn btn-danger']);
+
+    $form->prepare();
+?>
+
+<div class="row">
+    <?= $this->partial('cms/partial/alert'); ?>
+</div>
+<div class="row">
+
+    <div class="col">
+        <h3>Cadastro de Produto</h3>
+        <p> Por favor preencha o seguinte formulário e clique no botão <i>Criar</i>. </p>
+    </div>
+</div>
+
+<?= $this->form()->openTag($form); ?>
+
+    <div class="row">
+        <div class="col-md-6">
+
+            <div class="form-group">
+                <?= $this->formLabel($form->get('nome')); ?>
+                <?= $this->formElement($form->get('nome')); ?>
+                <?= $this->formElementErrors($form->get('nome')); ?>
+            </div>
+
+        </div>
+        <div class="col-md-3">
+
+            <div class="material-switch form-group">
+                <span>Status</span><br>
+                <?= $this->formCheckbox($form->get('status')); ?>
+                <?= $this->formLabel($form->get('status')); ?>
+                <?= $this->formElementErrors($form->get('status')); ?>
+                <span class='status_description'></span>
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+
+            <?= $this->formElement($form->get('submit')); ?>
+
+        </div>
+    </div>
+
+<?= $this->form()->closeTag(); ?>
+

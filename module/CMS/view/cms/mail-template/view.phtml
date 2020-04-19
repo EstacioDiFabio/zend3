@@ -1,0 +1,75 @@
+<?php
+
+    $this->headTitle('Visualizar Template de E-mail');
+
+    $this->mainMenu()->setActiveItemId('admin');
+    $this->mainMenu()->setActiveListItemId('Template de E-mail');
+
+    $this->pageBreadcrumbs()->setItems([
+                'Inicio'=>$this->url('home'),
+                'Gerenciamento de Template de E-mails'=>$this->url('mailTemplates'),
+                'Visualizar Template de E-mails'=>$this->url('mailTemplates', ['action'=>'view', 'id'=>$mailTemplate->getId()])
+                ]);
+?>
+
+<div class="row">
+    <?= $this->partial('cms/partial/alert'); ?>
+</div>
+<h3>Visualizar Template de E-mail </h3>
+
+<div class="row">
+    <div class="col-md-6">
+        <table class="table table-striped">
+            <thead>
+                <td>Código</td>
+                <td>Nome</td>
+                <td>Identificador</td>
+                <td>Status</td>
+            </thead>
+            <tbody>
+                <td><?= $this->escapeHtml($mailTemplate->getId()); ?></td>
+                <td><?= $this->escapeHtml($mailTemplate->getName()); ?></td>
+                <td><?= $this->escapeHtml($mailTemplate->getIdentifier()); ?></td>
+                <td><?= $this->escapeHtml($mailTemplate->getStatusAsString()); ?></td>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-12">
+        <hr>
+        <div class="row">
+            <?= html_entity_decode($mailTemplate->getHeader(), ENT_COMPAT, 'UTF-8'); ?>
+        </div>
+        <div class="row">
+            <?= html_entity_decode($mailTemplate->getContent(), ENT_COMPAT, 'UTF-8'); ?>
+        </div>
+        <div class="row">
+        <?php if(!empty($file)): ?>
+
+            <?php $ext = pathinfo($file, PATHINFO_EXTENSION); ?>
+
+            <?php if( $ext == 'png' || $ext == 'jpeg' || $ext == 'jpg' || $ext == 'gif' ): ?>
+
+                <img src="<?= $this->url('mailTemplates', ['action'=>'file'],
+                                         ['query'=>['name'=>$file, 'thumbnail'=>true]]); ?>">
+
+            <?php else: ?>
+
+                <a href="<?= $this->url('mailTemplates', ['action'=>'file'],
+                                         ['query'=>['name'=>$file]]); ?>">
+                    <img src=<?= \Base\Module::ROOT_PATH."/img/file.png" ?>
+                         class="fileUploaded"
+                         title="<?= $file; ?>">
+                </a>
+
+            <?php endif; ?>
+
+        <?php endif; ?>
+        </div>
+        <div class="row">
+            <?= html_entity_decode($mailTemplate->getFooter(), ENT_COMPAT, 'UTF-8'); ?>
+        </div>
+        <div class="row">
+
+        </div>
+    </div>
+</div>

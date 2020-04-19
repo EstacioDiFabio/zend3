@@ -1,0 +1,26 @@
+{
+  "name": "zendel",
+  "version": "1.0.0",
+  "description": "windel the newest configuration",
+  "main": "windel.js",
+  "scripts": {},
+  "keywords": [
+    "windel",
+    "javascript"
+  ],
+  "private": true,
+  "author": "windel",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-rename": "^1.4.0",
+    "gulp-sass": "^4.0.1",
+    "gulp-uglify": "^3.0.2",
+    "gulp-watch": "^5.0.0"
+  },
+  "dependencies": {
+    "gulp-jshint": "^2.1.0",
+    "gulp-util": "^3.0.8"
+  }
+}

@@ -1,0 +1,67 @@
+<?= $this->doctype(); ?>
+
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8">
+        <?= $this->headTitle('WINDEL')->setSeparator(' - ')->setAutoEscape(false); ?>
+        <!-- Meta -->
+        <?= $this->headMeta()
+            ->appendName('viewport', 'width=device-width, initial-scale=1')
+            ->appendHttpEquiv('X-UA-Compatible', 'IE=edge');
+        ?>
+        <!-- Styles -->
+        <?= $this->headLink(['rel' => 'shortcut icon',
+                             'type' => 'image/vnd.microsoft.icon',
+                             'href' => $this->basePath() . '/img/favicon.ico'])
+
+                ->prependStylesheet($this->basePath('css/min/main.min.css'))
+                ->prependStylesheet($this->basePath('css/min/waves.min.css'))
+                ->prependStylesheet($this->basePath('css/min/datepicker.min.css'))
+                ->prependStylesheet($this->basePath('css/min/timepicker.min.css'))
+                ->prependStylesheet($this->basePath('css/min/notifIt.min.css'))
+                ->prependStylesheet($this->basePath('css/min/dataTables.bootstrap.min.css'))
+                ->prependStylesheet($this->basePath('css/min/datatables.min.css'))
+                ->prependStylesheet($this->basePath('css/min/summernote.min.css'))
+                ->prependStylesheet($this->basePath('css/min/font-awesome.min.css'))
+                ->prependStylesheet($this->basePath('css/min/bootstrap.min.css'));
+        ?>
+
+
+    </head>
+    <body>
+        <!-- Navigation bar -->
+        <?php
+            if (isset($activeMenuItemId)) {
+                $this->mainMenu()->setActiveItemId($activeMenuItemId);
+            }
+            // Render the navbar
+            echo $this->mainMenu()->render();
+        ?>
+
+        <div class="row no-gutters">
+            <nav aria-label="breadcrumb" class="navbar-breadcrumb">
+                <?= $this->pageBreadcrumbs()->render(); ?>
+            </nav>
+        </div>
+        <div class="container windel-container">
+
+            <input type="hidden" id="baseUrl"
+                   value=<?= $_SERVER['REDIRECT_BASE'] ?? $_SERVER['REQUEST_URI']; ?>>
+            <!-- Render the content -->
+            <?= $this->content; ?>
+
+        </div>
+        <div class="container">
+            <div class="row no-gutters justify-content-center footer">
+                <p>&copy; <?= date('Y'); ?> Windel Sistemas • Todos os direitos reservados</p>
+            </div>
+        </div>
+        <!-- Scripts -->
+        <?php $this->inlineScript()->setAllowArbitraryAttributes(true); ?>
+
+        <?= $this->inlineScript()->prependFile($this->basePath('js/jsvendor/require.min.js'),
+                                               'text/javascript',
+                                               array('data-main' => $this->basePath('js/config/require.config.js'))); ?>
+    </body>
+
+</html>

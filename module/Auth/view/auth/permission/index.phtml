@@ -1,0 +1,68 @@
+<?php
+    $this->headTitle('Permissions');
+
+    $this->mainMenu()->setActiveItemId('admin');
+    $this->mainMenu()->setActiveListItemId('Permissões');
+
+    $this->pageBreadcrumbs()->setItems([
+                'Inicio'=>$this->url('home'),
+                'Gerenciamento de Permissões'=>$this->url('permissions'),
+                ]);
+?>
+<div class="row">
+    <?= $this->partial('cms/partial/alert'); ?>
+</div>
+<div class="row">
+
+    <div class="col">
+        <h3>Gerenciamento de Permissões</h3>
+    </div>
+    <div class="col text-right">
+        <a class="btn btn-sm btn-outline-primary rounded-circle hoverable-rotate hoverable-rotate-moviment" href="
+            <?= $this->url('permissions', ['action'=>'add']); ?>" title="Adicionar">
+            <i class="fas fa-plus"></i>
+        </a>
+    </div>
+
+</div>
+<div class="row">
+    <?= $this->partial('cms/partial/filter', ['search'=>$search, 'operators' => $operators]); ?>
+</div>
+
+<div class="table-responsive top-margin-10">
+    <table class="table table-striped table-bordered table-hover dataTables">
+        <thead class="thead-dark">
+            <tr>
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($permissions as $permission): ?>
+            <tr>
+                <td>
+                    <a href="<?= $this->url('permissions', ['action'=>'view', 'id'=>$permission->getId()]); ?>">
+                        <?= $this->escapeHtml($permission->getName()); ?>
+                    </a>
+                </td>
+                <td><?= $this->escapeHtml($permission->getDescription()); ?></td>
+                <td>
+                    <nobr>
+                    <a class="btn btn-sm btn-info hoverable-scale"
+                       href="<?= $this->url('permissions', ['action'=>'edit', 'id'=>$permission->getId()]); ?>"
+                       title="Editar">
+                        <i class="far fa-edit"></i>
+                    </a>
+                    <a class="btn btn-sm btn-danger delete-action hoverable-scale"
+                       data-id="<?= $permission->getId(); ?>" href="#" title="Remover">
+                        <i class="fa fa-trash"></i>
+                    </a>
+                    </nobr>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>
+

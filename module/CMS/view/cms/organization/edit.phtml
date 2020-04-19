@@ -1,0 +1,174 @@
+<?php
+
+    $this->headTitle('Editar Unidade');
+
+    $this->mainMenu()->setActiveItemId('management');
+    $this->mainMenu()->setActiveListItemId('Unidades');
+
+    $this->pageBreadcrumbs()->setItems([
+                'Inicio'=>$this->url('home'),
+                'Gerenciamento de Unidades'=>$this->url('organizations'),
+                'Editar Unidade'=>$this->url('organizations', ['action'=>'edit', 'id'=>$organization->getId()])
+                ]);
+
+    $form->get('name')->setAttributes([
+        'class'=>'form-control',
+        'placeholder'=>'WINDEL MATRIZ'
+        ]);
+
+    $form->get('status')->setAttributes([
+        'class'=>'form-control'
+        ]);
+
+    $dia = [
+        0 => 'sunday',
+        1 => 'monday',
+        2 => 'tuesday',
+        3 => 'wednesday',
+        4 => 'thursday',
+        5 => 'friday',
+        6 => 'saturday'
+    ];
+
+    for ($i=0; $i <= 6; $i++) {
+
+
+        if (isset($hour[$dia[$i]])) {
+
+            $form->get($dia[$i].'[status_hour]')
+             ->setAttributes(['value' => $hour[$dia[$i]]['status_hour'],
+                              'class' => 'material-control-input']);
+
+            $form->get($dia[$i].'[morning_start_time]')
+                 ->setAttributes([
+                        'class'=>'form-control timepicker',
+                        'value' => $hour[$dia[$i]]['morning_start_time'],
+                    ])->setValue($hour[$dia[$i]]['morning_start_time']);
+
+            $form->get($dia[$i].'[morning_closing_time]')
+                 ->setAttributes([
+                    'class'=>'form-control timepicker',
+                    'value' => $hour[$dia[$i]]['morning_closing_time'],
+                ])->setValue($hour[$dia[$i]]['morning_closing_time']);
+
+            $form->get($dia[$i].'[afternoon_start_time]')
+                 ->setAttributes([
+                    'class'=>'form-control timepicker',
+                    'value' => $hour[$dia[$i]]['afternoon_start_time'],
+                ])->setValue($hour[$dia[$i]]['afternoon_start_time']);
+
+            $form->get($dia[$i].'[afternoon_closing_time]')
+                 ->setAttributes([
+                    'class'=>'form-control timepicker',
+                    'value' => $hour[$dia[$i]]['afternoon_closing_time'],
+                ])->setValue($hour[$dia[$i]]['afternoon_closing_time']);
+
+        } else {
+
+            $form->get($dia[$i].'[status_hour]')->setAttributes(['class' => 'material-control-input']);
+
+            $form->get($dia[$i].'[morning_start_time]')
+                 ->setAttributes(['class'=>'form-control timepicker']);
+
+            $form->get($dia[$i].'[morning_closing_time]')
+                 ->setAttributes(['class'=>'form-control timepicker']);
+
+            $form->get($dia[$i].'[afternoon_start_time]')
+                 ->setAttributes(['class'=>'form-control timepicker']);
+
+            $form->get($dia[$i].'[afternoon_closing_time]')
+                 ->setAttributes(['class'=>'form-control timepicker']);
+        }
+    }
+
+
+    $form->get('submit')
+            ->setAttributes(['class'=>'btn btn-danger'])
+            ->setValue('Alterar');
+
+    $form->prepare();
+
+?>
+<div class="row">
+    <?= $this->partial('cms/partial/alert'); ?>
+</div>
+<div class="row">
+    <div class="col">
+        <h3>Editar unidade <?= $this->escapeHtml($organization->getName()); ?></h3>
+    </div>
+</div>
+
+<?= $this->form()->openTag($form); ?>
+<div class="row">
+    <div class="col-md-6">
+
+        <div class="material-switch form-group">
+            <span>Status</span><br>
+            <?= $this->formCheckbox($form->get('status')); ?>
+            <?= $this->formLabel($form->get('status')); ?>
+            <?= $this->formElementErrors($form->get('status')); ?>
+            <span class='status_description'></span>
+        </div>
+
+        <div class="form-group">
+            <?= $this->formLabel($form->get('name')); ?>
+            <?= $this->formElement($form->get('name')); ?>
+            <?= $this->formElementErrors($form->get('name')); ?>
+        </div>
+
+    </div>
+</div>
+<?php for($i=0; $i <= 6; $i++){ ?>
+    <div class="col-md-6">
+        <div class="row">
+
+            <div class="col-12">
+                <label class="custom-control material-checkbox">
+                    <?= $this->formElement($form->get($dia[$i].'[status_hour]')); ?>
+                    <span class="material-control-indicator"></span>
+                    <span class="material-control-description">
+                        <?= $this->formLabel($form->get($dia[$i].'[status_hour]')); ?>
+                    </span>
+                    <?= $this->formElementErrors($form->get($dia[$i].'[status_hour]')); ?>
+                </label>
+            </div>
+            <div class="col-4 text-right">
+                <span>Manhã</span>
+            </div>
+            <div class="col-4 ">
+                <?= $this->formElement($form->get($dia[$i].'[morning_start_time]')); ?>
+                <?= $this->formElementErrors($form->get($dia[$i].'[morning_start_time]')); ?>
+            </div>
+            <div class="col-4">
+                <?= $this->formElement($form->get($dia[$i].'[morning_closing_time]')); ?>
+                <?= $this->formElementErrors($form->get($dia[$i].'[morning_closing_time]')); ?>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="row">
+            <div class="col-12">
+
+            </div>
+            <div class="col-4 text-right">
+                <span>Tarde</span>
+            </div>
+             <div class="col-4">
+                <?= $this->formElement($form->get($dia[$i].'[afternoon_start_time]')); ?>
+                <?= $this->formElementErrors($form->get($dia[$i].'[afternoon_start_time]')); ?>
+            </div>
+            <div class="col-4">
+                <?= $this->formElement($form->get($dia[$i].'[afternoon_closing_time]')); ?>
+                <?= $this->formElementErrors($form->get($dia[$i].'[afternoon_closing_time]')); ?>
+            </div>
+        </div>
+        <hr>
+    </div>
+<?php } ?>
+    <div class="row">
+        <div class="col m12">
+            <?= $this->formElement($form->get('submit')); ?>
+        </div>
+    </div>
+
+<?= $this->form()->closeTag(); ?>

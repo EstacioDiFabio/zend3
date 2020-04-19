@@ -1,0 +1,20 @@
+@import 'variables/colours';
+@import 'mixin/m_transform';
+@import 'mixin/m_transition';
+
+.hoverable-rotate:hover{
+    @include transform(rotate(360deg));
+}
+.hoverable-rotate{
+    @include transform(rotate(0deg));
+    @include transition(.3s);
+    padding-bottom: 2px;
+}
+.hoverable-rotate-moviment:hover{
+    @include transition(0.5s ease-in-out);
+}
+.hoverable-scale:hover{
+    @include transition(0.3s ease-in-out);
+    @include transform(scale(1.1));
+    box-shadow: 2px 2px 2px $gray;
+}

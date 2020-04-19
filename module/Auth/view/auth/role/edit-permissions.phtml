@@ -1,0 +1,63 @@
+<?php
+    $this->headTitle('Editar Permissões da Função');
+
+    $this->mainMenu()->setActiveItemId('admin');
+    $this->mainMenu()->setActiveListItemId('Funções');
+
+    $this->pageBreadcrumbs()->setItems([
+                'Inicio'=>$this->url('home'),
+                'Gerenciamento de Funções'=>$this->url('roles'),
+                'Editar Função'=>$this->url('roles', ['action'=>'edit', 'id'=>$role->getId()])
+                ]);
+
+    $form->get('submit')
+            ->setAttributes(['class'=>'btn btn-danger'])
+            ->setValue('Salvar');
+
+    $form->prepare();
+?>
+<div class="row">
+    <?= $this->partial('cms/partial/alert'); ?>
+</div>
+<div class="row">
+    <div class="col">
+        <h3>Editar Permissões da Função <?= $this->escapeHtml($role->getName()) ?></h3>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-8">
+        <?= $this->form()->openTag($form); ?>
+        <table class="table table-striped table-bordered">
+            <tr>
+                <th>Nome</th>
+                <th>Descrição</th>
+            </tr>
+            <?php foreach ($allPermissions as $permission):
+                $element = $form->get('permissions')->get($permission->getName());
+            ?>
+            <tr>
+                <td>
+                    <div class="checkbox">
+                        <label><input type="checkbox" name="<?= $this->escapeHtmlAttr($element->getName()) ?>"
+                                      value="<?= $this->escapeHtmlAttr($element->getCheckedValue()) ?>"
+                                      <?php if ($element->isChecked()) echo 'checked'?>
+                                      <?php if ($element->getAttribute('disabled')) echo 'disabled'?>>
+                            <?= $this->escapeHtml($element->getLabel()) ?>
+                        </label>
+                        <?= $this->formElementErrors($element); ?>
+                    </div>
+                </td>
+                <td>
+                    <?= $this->escapeHtml($permission->getDescription()) ?>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        </table>
+        <?= $this->formElement($form->get('csrf')); ?>
+
+        <?= $this->formElement($form->get('submit')); ?>
+
+        <?= $this->form()->closeTag(); ?>
+    </div>
+</div>
+

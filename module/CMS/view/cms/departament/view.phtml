@@ -1,0 +1,35 @@
+<?php
+    $this->headTitle('Visualizar Setor');
+
+    $this->mainMenu()->setActiveItemId('management');
+    $this->mainMenu()->setActiveListItemId('Setores');
+
+    $this->pageBreadcrumbs()->setItems([
+                'Inicio'=>$this->url('home'),
+                'Gerenciamento de Setores'=>$this->url('departaments'),
+                'Visualizar Setor'=>$this->url('departaments', ['action'=>'view', 'id'=>$departament->getId()])
+                ]);
+?>
+<div class="row">
+    <?= $this->partial('cms/partial/alert'); ?>
+</div>
+<h3>Visualizar Setor </h3>
+
+<div class="row">
+    <div class="col-md-6">
+        <table class="table table-striped table-bordered">
+             <tr>
+                <th>ID:</th>
+                <td><?= $this->escapeHtml($departament->getId()); ?></th>
+            </tr>
+            <tr>
+                <th>Name:</th>
+                <td><?= $this->escapeHtml($departament->getName()); ?></th>
+            </tr>
+            <tr>
+                <th>Status:</th>
+                <td><?= $this->escapeHtml($departament->getStatusAsString()); ?></th>
+            </tr>
+        </table>
+    </div>
+</div>

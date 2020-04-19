@@ -1,0 +1,69 @@
+<div id="form-filter" class="col m12">
+    <div class="card">
+        <div class="card-header" id="filter" data-toggle="collapse"
+             data-target="#filter-inputs" aria-controls="filter-inputs">
+
+            <div class="row">
+                <div class="col m8 s6 text-left">
+                    <h6 class="panel-title"><i class="fa fa-filter"></i> Filtro</h6>
+                </div>
+                <div class="col m4 s6 text-right toggle">
+                    <i class="fas fa-angle-down"></i>
+                </div>
+            </div>
+
+        </div>
+        <div id="filter-inputs" class="collapse" aria-labelledby="filter" data-parent="#form-filter">
+
+            <div class="card-body">
+                <form class="form" id="search-form">
+                    <div class="clone" data-index="0" >
+                        <div class="row">
+                            <div class="col m3">
+                                <label>Coluna</label>
+                                <select id="search_columns" name="search_columns[]" class="form-control">
+                                    <option></option>
+                                    <?php foreach ($search as $key => $value) { ?>
+                                        <option name="<?= $key; ?>" value="<?= $key; ?>"> <?= $value; ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+
+                            <div class="col m3">
+                                <label>Operador</label>
+                                <select name="search_operators[]" class="form-control">
+                                    <option></option>
+                                    <?php foreach ($operators as $key => $value) { ?>
+                                        <option name="<?= $key; ?>" value="<?= $key; ?>"> <?= $value; ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+
+                            <div class="col m3">
+                                <label>Valor</label>
+                                <input type="text" name="search_value[]" class="form-control">
+                            </div>
+
+                            <div class="col m3 remove">
+                                <label>Remover</label><br>
+                                <button type="button" class="btn btn-danger remove-line hoverable-scale">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group text-right">
+                        <button type="button" id="button-filter" class="btn btn-default hoverable-scale">
+                            <i class="fa fa-filter"></i> Filtrar
+                        </button>
+                        <button type="button" id="add-more" class="btn btn-default hoverable-scale">
+                            <i class="fa fa-plus"></i>
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,3 @@
+RewriteEngine On
+RewriteBase /zendel/master/
+RewriteRule ^(.*)$ public/$1 [R=301,NC,L]

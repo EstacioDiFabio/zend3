@@ -1,0 +1,114 @@
+<?php
+
+    $this->headTitle('Editar Template de E-mail');
+
+    $this->mainMenu()->setActiveItemId('admin');
+    $this->mainMenu()->setActiveListItemId('Template de E-mail');
+
+    $this->pageBreadcrumbs()->setItems([
+               'Inicio'=>$this->url('home'),
+                'Gerenciamento de Template de E-mails'=>$this->url('mailTemplates'),
+                'Editar Template de E-mail'=>$this->url('mailTemplates', ['action'=>'edit', 'id'=>$mailTemplate->getId()])
+                ]);
+
+    $form->get('name')->setAttributes([
+        'class'=>'form-control',
+        'placeholder'=>'Cadastro de Usuários'
+        ]);
+
+    $form->get('header')->setAttributes(['class'=>'form-control summerNote']);
+    $form->get('content')->setAttributes(['class'=>'form-control summerNote']);
+    $form->get('footer')->setAttributes(['class'=>'form-control summerNote']);
+    $form->get('image')->setAttributes(['class'=>'form-control fileUpload']);
+    $form->get('identifier')->setAttributes(['class'=>'form-control']);
+    $form->get('status')->setAttributes(['class'=>'form-control']);
+    $form->get('submit')
+            ->setAttributes(['class'=>'btn btn-danger'])
+            ->setValue('Alterar');
+
+    $form->prepare();
+?>
+<div class="row">
+    <?= $this->partial('cms/partial/alert'); ?>
+</div>
+<div class="row">
+    <div class="col">
+        <h3>Editar Template de E-mail <?= $this->escapeHtml($mailTemplate->getName()); ?></h3>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <?= $this->form()->openTag($form); ?>
+
+        <div class="material-switch form-group">
+            <span>Status</span><br>
+            <?= $this->formCheckbox($form->get('status')); ?>
+            <?= $this->formLabel($form->get('status')); ?>
+            <?= $this->formElementErrors($form->get('status')); ?>
+            <span class='status_description'></span>
+        </div>
+
+        <div class="form-group">
+            <?= $this->formLabel($form->get('name')); ?>
+            <?= $this->formElement($form->get('name')); ?>
+            <?= $this->formElementErrors($form->get('name')); ?>
+        </div>
+
+        <div class="form-group">
+            <?= $this->formLabel($form->get('header')); ?>
+            <?= $this->formElement($form->get('header')); ?>
+            <?= $this->formElementErrors($form->get('header')); ?>
+        </div>
+
+        <div class="form-group">
+            <?= $this->formLabel($form->get('content')); ?>
+            <?= $this->formElement($form->get('content')); ?>
+            <?= $this->formElementErrors($form->get('content')); ?>
+        </div>
+
+        <div class="form-group">
+            <?= $this->formLabel($form->get('footer')); ?>
+            <?= $this->formElement($form->get('footer')); ?>
+            <?= $this->formElementErrors($form->get('footer')); ?>
+        </div>
+
+        <div class="form-group">
+
+            <?= $this->formLabel($form->get('image')); ?>
+            <?= $this->formElement($form->get('image')); ?>
+            <?= $this->formElementErrors($form->get('image')); ?>
+
+            <?php if(!empty($mailTemplate->getImage())): ?>
+                <?php $file = $this->escapeHtml($mailTemplate->getImage()); ?>
+                <?php $ext = pathinfo($file, PATHINFO_EXTENSION); ?>
+
+                <?php if( $ext !== 'png' || $ext !== 'jpeg' || $ext !== 'jpg' || $ext !== 'gif' ): ?>
+                    <a href="<?= $this->url('mailTemplates', ['action'=>'file'],
+                                             ['query'=>['name'=>$file]]); ?>">
+
+                        <img src=<?= \Base\Module::ROOT_PATH."/img/file.png" ?> class="fileUploaded" title="<?= $file; ?>">
+                    </a>
+                <?php else: ?>
+                    <img src="<?= $this->url('mailTemplates', ['action'=>'file'],
+                                         ['query'=>['name'=>$file,
+                                                    'thumbnail'=>true]]); ?>">
+                <?php endif; ?>
+
+                <input type="hidden" name="image" value="<?= $this->escapeHtml($mailTemplate->getImage()); ?>">
+                <br>
+            <?php endif; ?>
+
+        </div>
+
+        <div class="form-group">
+            <?= $this->formLabel($form->get('identifier')); ?>
+            <?= $this->formElement($form->get('identifier')); ?>
+            <?= $this->formElementErrors($form->get('identifier')); ?>
+        </div>
+
+        <?= $this->formElement($form->get('submit')); ?>
+
+        <?= $this->form()->closeTag(); ?>
+    </div>
+</div>
+

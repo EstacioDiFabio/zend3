@@ -1,0 +1,87 @@
+@import 'variables/colours';
+
+.mat-label {
+  display: block;
+  font-size: 16px;
+  transform: translateY(25px);
+  color: $gray;
+  transition: all 0.5s;
+}
+
+.mat-input {
+  position: relative;
+  background: transparent;
+  width: 100%;
+  border: none;
+  outline: none;
+  padding: 8px 0;
+  font-size: 16px;
+}
+
+.mat-div {
+  padding: 20px 0 0 0;
+  position: relative;
+}
+
+.mat-div:after,
+.mat-div:before {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: $gray;
+  bottom: 0;
+  left: 0;
+  transition: all 0.5s;
+}
+
+.mat-div::after {
+  background-color: $red-windel-intense;
+  transform: scaleX(0);
+}
+
+.is-active::after {
+  transform: scaleX(1);
+}
+
+.is-active .mat-label {
+  color: $red-windel-intense;
+}
+
+.is-completed .mat-label {
+  font-size: 12px;
+  transform: translateY(0);
+}
+
+.ui-timepicker-container{
+     z-index:1151 !important;
+}
+
+.custom-control{
+
+    &.material-checkbox{
+        --color: $green-mat;
+
+        .material-control-input{
+            display: none;
+            &:checked~.material-control-indicator{
+                border-color: $green-mat;
+                transform: rotateZ(45deg) translate(1px, -5px);
+                width: 10px;
+                border-top: 0px solid $white;
+                border-left: 0px solid $white;
+            }
+        }
+        .material-control-indicator{
+            display: inline-block;
+            position: absolute;
+            top: 4px;
+            left: 0;
+            width: 16px;
+            height: 16px;
+            border: 2px solid $gray;
+            transition: .3s;
+        }
+    }
+}

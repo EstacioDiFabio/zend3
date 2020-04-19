@@ -1,0 +1,13 @@
+.vagrant/
+vendor/
+config/development.config.php
+data/cache/*
+!data/cache/.gitkeep
+phpunit.xml
+node_modules/
+.phpintel
+.phpintel/*
+public/img/captcha/*
+data/upload/*
+data/backups/*
+data/DoctrineORMModule/*

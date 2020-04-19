@@ -1,0 +1,44 @@
+<?= $this->doctype(); ?>
+
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8">
+        <?= $this->headTitle('WINDEL')->setSeparator(' - ')->setAutoEscape(false); ?>
+        <!-- Meta -->
+        <?= $this->headMeta()
+            ->appendName('viewport', 'width=device-width, initial-scale=1.0')
+            ->appendHttpEquiv('X-UA-Compatible', 'IE=edge');
+        ?>
+        <!-- Styles -->
+        <?= $this->headLink(['rel' => 'shortcut icon',
+                             'type' => 'image/vnd.microsoft.icon',
+                             'href' => $this->basePath() . '/img/favicon.ico'])
+
+                ->prependStylesheet($this->basePath('css/min/main.min.css'))
+                ->prependStylesheet($this->basePath('css/min/waves.min.css'))
+                ->prependStylesheet($this->basePath('css/min/summernote.min.css'))
+                ->prependStylesheet($this->basePath('css/min/font-awesome.min.css'))
+                ->prependStylesheet($this->basePath('css/min/bootstrap.min.css'));
+        ?>
+        <!-- Scripts -->
+        <?php $this->headScript()->setAllowArbitraryAttributes(true); ?>
+
+        <?= $this->headScript()->prependFile($this->basePath('js/jsvendor/require.min.js'),
+                                               'text/javascript',
+                                               array('data-main' => $this->basePath('js/config/require.config.js'))); ?>
+    </head>
+    <body id="background-<?= rand(1, 6); ?>" class="layoutTwo">
+
+        <div class="container windel-container">
+            <input type="hidden" id="baseUrl"
+                   value=<?= $_SERVER['REDIRECT_BASE'] ?? $_SERVER['REQUEST_URI']; ?>>
+
+            <?= $this->content; ?>
+        </div>
+        <div class="container">
+            <div class="row no-gutters justify-content-center footer">
+                <p>&copy; <?= date('Y'); ?> Windel Sistemas • Todos os direitos reservados</p>
+            </div>
+        </div>
+    </body>
+</html>

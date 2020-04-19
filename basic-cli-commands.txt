@@ -1,0 +1,9 @@
+vendor/bin/doctrine-module orm:convert-mapping --force --from-database --namespace="Quiz\\V1\\Entity\\" annotation ./module/Quiz/src/ --filter "Produto"
+
+vendor/bin/doctrine-module orm:generate-entities module/Quiz/src --generate-annotations=true --filter "Produto"
+
+criar pasta
+    data/upload
+
+mysqldump -u root -p zendel > zendeldb.sql
+

@@ -1,0 +1,91 @@
+<?php
+
+    $this->headTitle('Adicionar Template de E-mail');
+
+    $this->mainMenu()->setActiveItemId('admin');
+    $this->mainMenu()->setActiveListItemId('Template de E-mail');
+
+    $this->pageBreadcrumbs()->setItems([
+                'Inicio'=>$this->url('home'),
+                'Gerenciamento de Template de E-mails'=>$this->url('mailTemplates'),
+                'Adicionar Template de E-mails'=>$this->url('mailTemplates', ['action'=>'add'])
+                ]);
+
+    $form->get('name')
+         ->setAttributes(['class'=>'form-control',
+                          'placeholder'=>'Cadastro de Usuários']);
+
+    $form->get('header')->setAttributes(['class'=>'form-control summerNote']);
+    $form->get('content')->setAttributes(['class'=>'form-control summerNote']);
+    $form->get('footer')->setAttributes(['class'=>'form-control summerNote']);
+    $form->get('image')->setAttributes(['class'=>'form-control fileUpload']);
+    $form->get('identifier')->setAttributes(['class'=>'form-control']);
+    $form->get('status')->setAttributes(['class'=>'form-control', 'value' => '1']);
+    $form->get('submit')->setAttributes(['class'=>'btn btn-danger']);
+    $form->prepare();
+?>
+
+<div class="row">
+    <?= $this->partial('cms/partial/alert'); ?>
+</div>
+<div class="row">
+
+    <div class="col">
+        <h3>Adicionar Template de E-mail</h3>
+        <p> Por favor preencha o seguinte formulário e clique no botão <i>Criar</i>. </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <?= $this->form()->openTag($form); ?>
+
+        <div class="material-switch form-group">
+            <span>Status</span><br>
+            <?= $this->formCheckbox($form->get('status')); ?>
+            <?= $this->formLabel($form->get('status')); ?>
+            <?= $this->formElementErrors($form->get('status')); ?>
+            <span class='status_description'></span>
+        </div>
+
+        <div class="form-group">
+            <?= $this->formLabel($form->get('name')); ?>
+            <?= $this->formElement($form->get('name')); ?>
+            <?= $this->formElementErrors($form->get('name')); ?>
+        </div>
+
+        <div class="form-group">
+            <?= $this->formLabel($form->get('header')); ?>
+            <?= $this->formElement($form->get('header')); ?>
+            <?= $this->formElementErrors($form->get('header')); ?>
+        </div>
+
+        <div class="form-group">
+            <?= $this->formLabel($form->get('content')); ?>
+            <?= $this->formElement($form->get('content')); ?>
+            <?= $this->formElementErrors($form->get('content')); ?>
+        </div>
+
+        <div class="form-group">
+            <?= $this->formLabel($form->get('footer')); ?>
+            <?= $this->formElement($form->get('footer')); ?>
+            <?= $this->formElementErrors($form->get('footer')); ?>
+        </div>
+
+        <div class="form-group">
+            <?= $this->formLabel($form->get('image')); ?>
+            <?= $this->formElement($form->get('image')); ?>
+            <?= $this->formElementErrors($form->get('image')); ?>
+        </div>
+
+        <div class="form-group">
+            <?= $this->formLabel($form->get('identifier')); ?>
+            <?= $this->formElement($form->get('identifier')); ?>
+            <?= $this->formElementErrors($form->get('identifier')); ?>
+        </div>
+
+        <?= $this->formElement($form->get('submit')); ?>
+
+        <?= $this->form()->closeTag(); ?>
+    </div>
+</div>

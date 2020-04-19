@@ -1,0 +1,26 @@
+@import 'variables/colours';
+
+.dataTables {
+    > tbody td .btn {
+        width: 33px !important;
+    }
+}
+.table{
+    thead{
+        font-size: 14px;
+        tr > th{
+            text-transform: uppercase;
+        }
+    }
+    tbody{
+        font-size: 12px;
+    }
+}
+.table.dataTable{
+    border-collapse: collapse !important;
+}
+
+div#DataTables_Table_0_wrapper {
+    padding-right: unset;
+    padding-left: unset;
+}

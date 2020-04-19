@@ -1,0 +1,68 @@
+<?php
+
+    $this->headTitle('Visualizar Usuário');
+
+    $this->mainMenu()->setActiveItemId('management');
+    $this->mainMenu()->setActiveListItemId('Usuários');
+
+    $this->pageBreadcrumbs()->setItems([
+                'Início'=>$this->url('home'),
+                'Gerencimanento de Usuários'=>$this->url('users'),
+                'Visualizar Usuário'=>$this->url('users', ['action'=>'view', 'id'=>$user->getId()])
+                ]);
+?>
+<div class="row">
+    <?= $this->partial('cms/partial/alert'); ?>
+</div>
+<h3>Visualizar Usuário </h3>
+
+<div class="row">
+    <div class="col-md-6">
+        <table class="table table-striped table-bordered">
+             <tr>
+                <th>ID:</th>
+                <td><?= $this->escapeHtml($user->getId()); ?></th>
+            </tr>
+            <tr>
+                <th>E-mail:</th>
+                <td><?= $this->escapeHtml($user->getEmail()); ?></th>
+            </tr>
+            <tr>
+                <th>Nome:</th>
+                <td><?= $this->escapeHtml($user->getFirstName()." ".$user->getLastName()); ?></th>
+            </tr>
+            <tr>
+                <th>CRM:</th>
+                <td><?= $user->getUserIdCrm(); ?></th>
+            </tr>
+            <tr>
+                <th>Data de criação:</th>
+                <td><?= $this->escapeHtml($user->getDateCreated()->format('d/m/Y')); ?></td>
+            </tr>
+            <tr>
+                <th>Funções:</th>
+                <td><?= $this->escapeHtml($user->getRolesAsString()) ?></th>
+            </tr>
+            <tr>
+                <th>Cargo:</th>
+                <td><?= $user->getIdJob() ? $this->escapeHtml($user->getJobAsString()) : ""; ?></th>
+            </tr>
+            <tr>
+                <th>Grupo(s) de Trabalho:</th>
+                <td><?= $this->escapeHtml($user->getGroupAsString()); ?></th>
+            </tr>
+            <tr>
+                <th>Setor(es):</th>
+                <td><?= $this->escapeHtml($user->getDepartamentAsString()); ?></th>
+            </tr>
+            <tr>
+                <th>Unidade(s):</th>
+                <td><?= $this->escapeHtml($user->getOrganizationAsString()); ?></th>
+            </tr>
+            <tr>
+                <th>Status:</th>
+                <td><?= $this->escapeHtml($user->getStatusAsString()); ?></th>
+            </tr>
+        </table>
+    </div>
+</div>

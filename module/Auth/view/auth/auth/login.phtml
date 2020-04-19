@@ -1,0 +1,88 @@
+<?php
+
+    $form->get('email')
+         ->setAttributes([
+                'class'=>'mat-input',
+                'required' => true,
+                'autofocus'=>"true"
+            ])
+         ->setLabelAttributes([
+                'class' => 'mat-label'
+         ]);
+
+    $form->get('password')
+         ->setAttributes([
+                'class'=>'mat-input',
+                'required' => true,
+                'autocomplete'=>"new-password"
+         ])
+         ->setLabelAttributes([
+                'class' => 'mat-label'
+         ]);
+
+    $form->get('remember_me')
+         ->setAttributes([
+            'class'=>'material-control-input',
+         ]);
+
+?>
+<div class="row">
+    <div class="col m12 text-center">
+        <h1 class="form-signin-heading">
+            <strong>Windel Sistemas</strong>
+        </h1>
+    </div>
+    <div class="w-100"></div>
+    <div class="col-md-6 offset-md-3">
+        <form class="form-signin" method="post" autocomplete="disabled">
+
+            <?php if ($isLoginError): ?>
+                <div class="alert alert-warning login-alert" role="alert">
+                    Login e/ou Senha incorreto.
+                    <button type="button"
+                         class="close hoverable-rotate hoverable-rotate-moviment w100"
+                         data-dismiss="alert"
+                         aria-hidden="true">
+                     &times;
+                 </button>
+                </div>
+            <?php endif; ?>
+            <input type="hidden" name="email">
+            <input type="hidden" name="password">
+            <div class="mat-div is-completed is-active">
+                <?= $this->formLabel($form->get('email')); ?>
+                <?= $this->formElement($form->get('email')); ?>
+            </div>
+            <div class="mat-div">
+                <?= $this->formLabel($form->get('password')); ?>
+                <?= $this->formElement($form->get('password')); ?>
+            </div>
+            <div class="row">
+                <div class="col s12 m6 checkbox">
+                    <div class="text-left">
+                        <label class="custom-control material-checkbox">
+                            <?= $this->formElement($form->get('remember_me')); ?>
+                            <span class="material-control-indicator"></span>
+                            <span class="material-control-description">
+                                 Me manter conectado
+                            </span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col s12 m6 checkbox">
+                    <div class="text-right">
+                        <a href="<?= $this->url('reset-password') ?>">Esqueceu a senha?</a>
+                    </div>
+                </div>
+            </div>
+
+            <?= $this->formElement($form->get('redirect_url')); ?>
+            <?= $this->formElement($form->get('csrf')) ?>
+
+            <button class="btn btn-lg btn-danger btn-block" type="submit">
+                 Entrar <i class="fas fa-sign-in-alt"></i>
+            </button>
+
+        </form>
+    </div>
+</div>

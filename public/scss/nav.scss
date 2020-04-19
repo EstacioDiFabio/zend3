@@ -1,0 +1,134 @@
+@import 'variables/colours';
+@import 'mixin/m_transform';
+@import 'mixin/m_transition';
+
+.nav-wrapper{
+    padding-left: 20px;
+}
+.shadow{
+    box-shadow: 0px 0px 10px;
+}
+.navbar{
+    background-image: linear-gradient(to bottom, $red-windel-slight 0, $red-windel-intense 100%);
+    .navbar-brand{
+        color: $white;
+        font-weight: 700;
+    }
+    a:not(.active) {
+        color: $white;
+        &:hover:not(.navbar-brand),
+        &:focus:not(.navbar-brand){
+            font-weight: 700;
+        }
+    }
+    &:focus{
+        color: $red-windel-intense;
+        outline-color: $red-windel-intense;
+    }
+    .dropdown-item:focus{
+        color: $red-windel-intense;
+        background-color: $white;
+        outline-color: $red-windel-intense;
+    }
+    .dropdown-item.active,
+    .dropdown-item:active{
+        font-weight: 700;
+        background-color: $gray;
+        color: $white;
+    }
+    .navbar-toggler-icon{
+        color: $white;
+    }
+    .collapse{
+        font-size: 14px;
+        text-transform: uppercase;
+    }
+    .dropdown-menu{
+        font-size: 12px;
+        font-weight: 600;
+        background-color: $white;
+        a {
+            color: $red-windel-intense;
+        }
+
+    }
+    .nav-item.dropdown.active{
+        a.nav-link{
+            font-weight: 700;
+        }
+    }
+}
+.windel-breadcumb{
+    margin-left: 50px;
+}
+.navbar-breadcrumb{
+    margin-top: 60px;
+}
+.breadcrumb{
+    font-size: 14px;
+    a:not(.btn){
+            color: $red-windel-intense !important;
+        &:hover, &:active{
+            color: $red-windel-slight !important;
+        }
+    }
+}
+.breadcrumb:before{
+    margin: -7px 10px 0px 8px !important;
+}
+
+@media(min-width: 992px){
+    .navbar{
+        padding-left: 100px;
+    }
+}
+@media(max-width: 991px){
+
+    .navbar-brand{
+        margin-right: 45%;
+    }
+}
+.navbar-toggler:focus,
+.navbar-toggler:active {
+    outline: 0;
+}
+.navbar-toggler{
+
+    span{
+       display: block;
+       background-color: #fff;
+       height: 3px;
+       width: 25px;
+       margin-top: 4px;
+       margin-bottom: 4px;
+       @include transform(rotate(0deg));
+       position: relative;
+       left: 0;
+       opacity: 1;
+    }
+
+    span:nth-child(1),
+    span:nth-child(3){
+        @include transition(transform .35s ease-in-out);
+    }
+
+    &:not(.collapsed) {
+        span:nth-child(1) {
+            left: 0px;
+            top: 10px;
+            @include transform(rotate(135deg));
+            opacity: 0.9;
+        }
+        span:nth-child(2) {
+            height: 12px;
+            visibility: hidden;
+            background-color: transparent;
+        }
+        span:nth-child(3) {
+            left: 0px;
+            top: -13px;
+            @include transform(rotate(-135deg));
+            opacity: 0.9;
+        }
+    }
+}

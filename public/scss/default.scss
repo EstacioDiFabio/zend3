@@ -1,0 +1,94 @@
+@import 'variables/colours';
+@import 'mixin/m_selection';
+
+@include selection($red-windel-intense, $white);
+
+.red-windel{
+    color: $red-windel-intense;
+}
+.pekerow {
+    overflow: hidden;
+    width: 100%;
+
+    .file{
+        float: left;
+        width: 80%;
+    }
+}
+.fileUploaded{
+    width: 50px;
+    margin: 10px;
+}
+.clone {
+    display: none;
+}
+/* small devices bs4 */
+@media (min-width: 576px) {}
+
+@media (min-width: 992px) {
+    #user-form, #deployment-schedule-form {
+        .half-trace {
+            border-left: 1px solid $red-windel-intense;
+            height: 100%;
+        }
+    }
+}
+@media (max-width: 991.98px) {
+    #user-form{
+        .half-trace {
+            border-top: 1px solid $red-windel-intense;
+            height: 100%;
+            border-width: 50%;
+        }
+    }
+}
+.top-margin-10{
+    margin-top: 10px;
+}
+.btn-warning{
+    color: $white !important;
+}
+.card-header{
+    background-color: $secondary-gray !important;
+    color: $white;
+}
+.modal-header .close{
+    padding: unset !important;
+    margin: unset !important;
+}
+.alert{
+    min-height: 50px;
+}
+.status_description,
+.status_description_form,
+.status_description_required{
+    margin-left: 50px;
+}
+.left-83{
+    margin-left: 83%;
+}
+.material-switch{
+    span{
+        display: inline-block;
+        margin-bottom: .5rem;
+    }
+}
+
+.form-group > ul >li{
+    color: $red-windel-slight;
+}
+
+.dinamic-input{
+    ul{
+        list-style: none !important;
+        li{
+            display: inline;
+            color: $black !important;
+        }
+    }
+
+}
+.half-trace-before{
+    border-right: 1px solid $red-windel-intense;
+    height: 90%;
+}

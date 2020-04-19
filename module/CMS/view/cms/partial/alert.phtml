@@ -1,0 +1,22 @@
+<?php
+
+    $flash = $this->flashMessenger();
+    $flash->setMessageOpenFormat('<div%s>
+         <button type="button"
+                 class="close hoverable-rotate hoverable-rotate-moviment w100"
+                 data-dismiss="alert"
+                 aria-hidden="true">
+             &times;
+         </button>
+         <ul><li>')
+        ->setMessageSeparatorString('</li><li>')
+        ->setMessageCloseString('</li></ul></div>');
+
+
+    $warning = ['alert', 'alert-warning', 'alert-dismissible', 'fade', 'show'];
+    $success = ['alert', 'alert-success', 'alert-dismissible', 'fade', 'show'];
+    $info = ['alert', 'alert-info', 'alert-dismissible', 'fade', 'show'];
+
+    echo $this->flashMessenger()->render('error', $warning);
+    echo $this->flashMessenger()->render('success', $success);
+    echo $this->flashMessenger()->render('info', $info);

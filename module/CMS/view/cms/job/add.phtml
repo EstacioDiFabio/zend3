@@ -1,0 +1,71 @@
+<?php
+    $this->headTitle('Adicionar Cargo');
+
+    $this->mainMenu()->setActiveItemId('management');
+    $this->mainMenu()->setActiveListItemId('Cargos');
+
+    $this->pageBreadcrumbs()->setItems([
+            'Inicio'=>$this->url('home'),
+            'Gerenciamento de Cargos'=>$this->url('jobs'),
+            'Adicionar Cargo'=>$this->url('jobs', ['action'=>'add'])
+            ]);
+
+    $form->get('name')->setAttributes([
+        'class'=>'form-control',
+        'placeholder'=>'Progamador'
+        ]);
+
+    $form->get('id_top_job')->setAttributes([
+        'class'=>'form-control'
+        ]);
+
+    $form->get('status')->setAttributes([
+        'class'=>'form-control', 'value' => '1'
+        ]);
+
+    $form->get('submit')->setAttributes(['class'=>'btn btn-danger']);
+
+    $form->prepare();
+?>
+<div class="row">
+    <?= $this->partial('cms/partial/alert'); ?>
+</div>
+<div class="row">
+
+    <div class="col">
+        <h3>Adicionar Cargo</h3>
+        <p> Por favor preencha o seguinte formulário e clique no botão <i>Criar</i>. </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <?= $this->form()->openTag($form); ?>
+
+        <div class="material-switch form-group">
+            <span>Status</span><br>
+            <?= $this->formCheckbox($form->get('status')); ?>
+            <?= $this->formLabel($form->get('status')); ?>
+            <?= $this->formElementErrors($form->get('status')); ?>
+            <span class='status_description'></span>
+        </div>
+
+        <div class="form-group">
+            <?= $this->formLabel($form->get('name')); ?>
+            <?= $this->formElement($form->get('name')); ?>
+            <?= $this->formElementErrors($form->get('name')); ?>
+        </div>
+
+        <div class="form-group">
+            <?= $this->formLabel($form->get('id_top_job')); ?>
+            <?= $this->formElement($form->get('id_top_job')); ?>
+            <?= $this->formElementErrors($form->get('id_top_job')); ?>
+        </div>
+
+
+        <?= $this->formElement($form->get('submit')); ?>
+
+        <?= $this->form()->closeTag(); ?>
+    </div>
+</div>
+
