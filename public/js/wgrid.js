@@ -1,5 +1,5 @@
-define(['jquery', 'bootbox', 'windel'],
-    function($, bootbox, windel) {
+define(['jquery', 'bootbox', 'global'],
+    function($, bootbox, global) {
 
         'use strict';
 
@@ -40,12 +40,12 @@ define(['jquery', 'bootbox', 'windel'],
                             if(result){
 
                                 $.ajax({
-                                    url: windel.url()+'/remove/',
+                                    url: global.url()+'/remove/',
                                     type: 'POST',
                                     data: {id: id},
                                 })
                                 .done(function(data) {
-                                    windel.reload();
+                                    global.reload();
                                 })
                                 .fail(function(xhr, status, error) {
                                     console.error(xhr.responseText);
@@ -98,7 +98,7 @@ define(['jquery', 'bootbox', 'windel'],
 
                                 if (result) {
 
-                                    var url = windel.url();
+                                    var url = global.url();
 
                                     $.ajax({
                                         url: url+'/toggleActive',
@@ -109,7 +109,7 @@ define(['jquery', 'bootbox', 'windel'],
                                         },
                                     })
                                     .done(function(result) {
-                                        windel.reload();
+                                        global.reload();
                                     })
                                     .fail(function(xhr, status, error) {
                                         console.error(status);

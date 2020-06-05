@@ -69,7 +69,7 @@ class ProdutoController extends CMSController
         if ($this->getRequest()->isGet()) {
 
             $search = $this->params()->fromQuery();
-            $finder = $this->windelFilter()->performWhereString($search, $alias);
+            $finder = $this->csecFilter()->performWhereString($search, $alias);
 
         } else {
             $finder = $alias.".id > 0";
@@ -89,9 +89,9 @@ class ProdutoController extends CMSController
 
                 $returnArr[$key] = [
 
-                    '0' => $this->windelHtml()->getLink('produto', $form->getId(), $form->getName(), 'Visualizar'),
+                    '0' => $this->csecHtml()->getLink('produto', $form->getId(), $form->getName(), 'Visualizar'),
                     '1' => $form->getStatusToggle(),
-                    '2' => $this->windelHtml()->getActionButton('produto', $form->getId()),
+                    '2' => $this->csecHtml()->getActionButton('produto', $form->getId()),
                 ];
 
             }

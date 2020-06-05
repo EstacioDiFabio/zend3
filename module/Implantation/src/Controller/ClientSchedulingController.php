@@ -78,7 +78,7 @@ class ClientSchedulingController extends ImplantationController
     public function indexAction()
     {
         $id_tecnico = $this->currentUser->getUserIdCrm();
-        $datas = $this->windelAPI()->doGETRequest("cliente-implantacao",
+        $datas = $this->csecAPI()->doGETRequest("cliente-implantacao",
                                                   $this->getRequest(),
                                                   0,
                                                   $id_tecnico);
@@ -99,7 +99,7 @@ class ClientSchedulingController extends ImplantationController
         if ($this->getRequest()->isGet()) {
 
             $search = $this->params()->fromQuery();
-            $finder = $this->windelFilter()->performWhereString($search);
+            $finder = $this->csecFilter()->performWhereString($search);
             $responseData = $this->getCompletedProcessAction($finder);
 
         }
@@ -132,7 +132,7 @@ class ClientSchedulingController extends ImplantationController
             return;
         }
 
-        $scheduling = $this->windelAPI()
+        $scheduling = $this->csecAPI()
                            ->doGETRequest("agendamento-implantacao",
                                           $this->getRequest(), 0, $id);
 
@@ -141,7 +141,7 @@ class ClientSchedulingController extends ImplantationController
             return;
         }
 
-        $horasDisponiveis = $this->windelAPI()
+        $horasDisponiveis = $this->csecAPI()
                                  ->doGETRequest("horas-disponiveis-implantacao",
                                                 $this->getRequest(), 0, $scheduling[0]['atdIdcontrato']);
 
@@ -200,7 +200,7 @@ class ClientSchedulingController extends ImplantationController
                 $dataSave['atdSituacao'] = $data['status'];
                 $idCRM = $data['id_attendance_crm'];
 
-                $setNewDateCRM = $this->windelAPI()
+                $setNewDateCRM = $this->csecAPI()
                                        ->doPOSTRequest("agendamento-implantacao",
                                                        (object)$dataSave, $idCRM);
 
@@ -231,7 +231,7 @@ class ClientSchedulingController extends ImplantationController
             $queryUri = ['data' => $dtCadastro,
                          'idFuncionario' => $this->currentUser->getUserIdCrm()];
 
-            $unavailableDatas = $this->windelAPI()->doGETRequest('atendimentos-do-dia',
+            $unavailableDatas = $this->csecAPI()->doGETRequest('atendimentos-do-dia',
                                                                  $this->getRequest(),
                                                                  0,
                                                                  $queryUri);

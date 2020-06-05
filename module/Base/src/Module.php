@@ -30,7 +30,7 @@ class Module
 
     const API_VERBOSE   = 'http://';
     const API_DOMAIN    = 'localhost/';
-    const API_ROOT_PATH = 'windel-api/master/public/';
+    const API_ROOT_PATH = 'csec-api/master/public/';
 
     const ENV     = 'development';
     const ENV_KEY = 'd2luZGVsOlcxbmQzbEB0ZXN0ZXM=';

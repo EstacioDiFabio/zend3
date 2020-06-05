@@ -1,5 +1,5 @@
-define(['jquery', 'bootbox', 'windel', 'jtimepicker', 'easytimer'],
-    function($, bootbox, windel, jtimepicker, easytimer) {
+define(['jquery', 'bootbox', 'global', 'jtimepicker', 'easytimer'],
+    function($, bootbox, global, jtimepicker, easytimer) {
 
         'use strict';
 

@@ -3,7 +3,7 @@ define(['jquery', 'bootbox'],
 
         'use strict';
 
-        var windel = function() {
+        var global = function() {
 
             var $public = {};
             var $private = {};
@@ -36,5 +36,5 @@ define(['jquery', 'bootbox'],
             return $public;
         };
 
-        return windel();
+        return global();
 });

@@ -13,7 +13,7 @@ use Exception;
 /**
 * Mail Trigger
 */
-class WindelMail
+class CsecMail
 {
 
     private $entityManager;
@@ -27,10 +27,10 @@ class WindelMail
         $this->entityManager = $entityManager;
         $this->transport = $transport;
 
-        ini_set('sendmail_from', 'crm@windel.com.br');
+        ini_set('sendmail_from', 'crm@csec.com.br');
 
         if($this->_base_testes) {
-            ini_set('sendmail_from', 'estacio.junior@windel.com.br');
+            ini_set('sendmail_from', 'estacio.junior@csec.com.br');
         }
 
     }
@@ -77,25 +77,25 @@ class WindelMail
 
             if(is_array($user)){
                 if($this->_base_testes)
-                    $message->addTo('estacio.junior@windel.com.br', $user['name']);
+                    $message->addTo('estacio.junior@csec.com.br', $user['name']);
                 else
                     $message->addTo($user['email'], $user['name']);
 
             } else {
                 if($this->_base_testes)
-                    $message->addTo('estacio.junior@windel.com.br', $user->getFirstName());
+                    $message->addTo('estacio.junior@csec.com.br', $user->getFirstName());
                 else
                     $message->addTo($user->getEmail(), $user->getFirstName());
             }
 
-            $message->setFrom('estacio.junior@windel.com.br', 'WINDEL');
+            $message->setFrom('estacio.junior@csec.com.br', 'WINDEL');
             $message->setSubject("WINDEL - ".$subject);
             $message->setBody($body);
             $message->setEncoding('UTF-8');
 
-            $message->getHeaders()->addHeaderLine('Reply-To', 'estacio.junior@windel.com.br');
+            $message->getHeaders()->addHeaderLine('Reply-To', 'estacio.junior@csec.com.br');
             $message->getHeaders()->addHeaderLine('MIME-Version', '1.0');
-            $message->getHeaders()->addHeaderLine('X-Mailer', 'CRM Windel');
+            $message->getHeaders()->addHeaderLine('X-Mailer', 'CRM Csec');
 
             $contentTypeHeader = $message->getHeaders()->get('Content-Type');
 
@@ -220,18 +220,18 @@ class WindelMail
                     Favor não responder este e-mail, pois a caixa de e-mail de resposta não é verificada.
                 </div>
                 <div class="col-md-12">
-                    <strong>Atenciosamente,<br /> Windel Sistemas</strong>
+                    <strong>Atenciosamente,<br /> Csec Sistemas</strong>
                 </div>
                 <div class="col-md-12">
 
                     <div class="col-md-6">
-                        Windel Sistemas Ltda<br />
+                        Csec Sistemas Ltda<br />
                         Rua Tupy, 91 , Bairro: Pio X, Caxias do Sul - RS, CEP: 95034-520<br />
-                        Fone: (54) 3025-2540 | 0800 600 2220 | E-mail: comercial@windel.com.br<br />
+                        Fone: (54) 3025-2540 | 0800 600 2220 | E-mail: comercial@csec.com.br<br />
                     </div>
                     <div class="col-md-6">
-                        <a href="'.($this->_base_testes==1 ? 'devel2.' : '').'windel.com.br">
-                            <img width="150" height="38" src="http://crm.windel.com.br/assets_custom/email/logo.jpg" />
+                        <a href="'.($this->_base_testes==1 ? 'devel2.' : '').'csec.com.br">
+                            <img width="150" height="38" src="http://crm.csec.com.br/assets_custom/email/logo.jpg" />
                         </a>
                     </div>
 

@@ -71,7 +71,7 @@ class RoleController extends CMSController
         if ($this->getRequest()->isGet()) {
 
             $search = $this->params()->fromQuery();
-            $finder = $this->windelFilter()->performWhereString($search, $alias);
+            $finder = $this->csecFilter()->performWhereString($search, $alias);
 
         } else {
             $finder = $alias.".id > 0";
@@ -91,9 +91,9 @@ class RoleController extends CMSController
 
                 $returnArr[$key] = [
 
-                    '0' => $this->windelHtml()->getLink('funcoes', $role->getId(), $role->getName(), 'Visualizar'),
+                    '0' => $this->csecHtml()->getLink('funcoes', $role->getId(), $role->getName(), 'Visualizar'),
                     '1' => $role->getDescription(),
-                    '2' => $this->windelHtml()->getActionButton('funcoes', $role->getId()),
+                    '2' => $this->csecHtml()->getActionButton('funcoes', $role->getId()),
                 ];
 
             }

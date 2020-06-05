@@ -17,15 +17,15 @@ class DeploymentScheduleManager
      */
     private $entityManager;
 
-    private $windelMail;
+    private $csecMail;
 
     /**
      * Constructs the service.
      */
-    public function __construct($entityManager, $windelMail)
+    public function __construct($entityManager, $csecMail)
     {
         $this->entityManager = $entityManager;
-        $this->windelMail = $windelMail;
+        $this->csecMail = $csecMail;
     }
 
     /**
@@ -213,7 +213,7 @@ class DeploymentScheduleManager
             'cancelamento_date' => $atd->modify("-1 day")->format('d/m/Y')
         ];
 
-        $this->windelMail->sendMail($user, $subject, 'confirmar_implantacao', $options, false);
+        $this->csecMail->sendMail($user, $subject, 'confirmar_implantacao', $options, false);
     }
 
     private function sendMailReschedule($atendimento, $name, $mail)
@@ -231,7 +231,7 @@ class DeploymentScheduleManager
             'implantation_date' => $atendimento->getDate()->format('d/m/Y')." ás ".$atendimento->getTime()->format('H:i'),
         ];
 
-        $this->windelMail->sendMail($user, $subject, 'pausar_implantacao', $options, false);
+        $this->csecMail->sendMail($user, $subject, 'pausar_implantacao', $options, false);
     }
 
     private function sendMailFinish($atendimento, $name, $mail)
@@ -251,6 +251,6 @@ class DeploymentScheduleManager
             'resumo_link'      => \Base\Module::CLIENTE_ENV."implantacao"
         ];
 
-        $this->windelMail->sendMail($user, $subject, 'finalizar_implantacao', $options, false);
+        $this->csecMail->sendMail($user, $subject, 'finalizar_implantacao', $options, false);
     }
 }

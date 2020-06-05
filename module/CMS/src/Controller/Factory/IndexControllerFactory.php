@@ -7,7 +7,7 @@ use CMS\Controller\IndexController;
 use Zend\Authentication\AuthenticationService;
 
 /**
- * This is the factory for WindelController. Its purpose is to instantiate the
+ * This is the factory for CsecController. Its purpose is to instantiate the
  * controller and inject dependencies into it.
  */
 class IndexControllerFactory implements FactoryInterface

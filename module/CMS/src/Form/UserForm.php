@@ -41,7 +41,7 @@ class UserForm extends Form
     private $tooShort   = 'Esse campo deve ter no mínimo 1 caracter.';
     private $tooLong    = 'Esse campo deve ter no máximo 255 caracteres.';
     private $mailNoLong = 'Seu e-mail não pode ser maior que 128 caracteres';
-    private $mailFormatInvalid = 'A entrada não é um endereço de email válido. Use o formato básico usuario@windel.com.br';
+    private $mailFormatInvalid = 'A entrada não é um endereço de email válido. Use o formato básico usuario@csec.com.br';
     private $tooShortPw = "Sua senha deve ter no mínimo 6 caracteres";
     private $tooLongPw  = "Sua senha não pode ser maior que 64 caracteres";
     private $notIdentical = 'Os dois tokens dados não correspondem.';

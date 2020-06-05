@@ -95,7 +95,7 @@ class OrganizationController extends CMSController
         if ($this->getRequest()->isGet()) {
 
             $search = $this->params()->fromQuery();
-            $finder = $this->windelFilter()->performWhereString($search, $alias);
+            $finder = $this->csecFilter()->performWhereString($search, $alias);
 
         } else {
             $finder = $alias.".id > 0";
@@ -116,9 +116,9 @@ class OrganizationController extends CMSController
 
                 $returnArr[$key] = [
 
-                    '0' => $this->windelHtml()->getLink('unidades', $organization->getId(), $organization->getName(), 'Visualizar'),
+                    '0' => $this->csecHtml()->getLink('unidades', $organization->getId(), $organization->getName(), 'Visualizar'),
                     '1' => $organization->getStatusToggle(),
-                    '2' => $this->windelHtml()->getActionButton('unidades', $organization->getId()),
+                    '2' => $this->csecHtml()->getActionButton('unidades', $organization->getId()),
                 ];
 
             }

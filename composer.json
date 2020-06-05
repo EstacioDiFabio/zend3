@@ -1,15 +1,14 @@
 {
     "name": "zendframework/skeleton-application",
-    "description": "Windel ZEND Application",
+    "description": "ZEND Application",
     "type": "project",
     "license": "BSD-3-Clause",
     "keywords": [
         "framework",
         "mvc",
         "zf",
-        "windel"
     ],
-    "homepage": "http://windel.com.br/",
+    "homepage": "http://zend.com",
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {

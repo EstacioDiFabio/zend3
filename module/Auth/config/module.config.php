@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping\Driver\AnnotationDriver;
 return [
     'doctrine' => [
         'driver' => [
-            'Windel_driver' => [
+            'Default_driver_zend' => [
                 'class' => AnnotationDriver::class,
                 'cache' => 'array',
                 'paths' => [
@@ -17,7 +17,7 @@ return [
             ],
             'orm_default' => [
                 'drivers' => [
-                    'Auth' => 'Windel_driver',
+                    'Auth' => 'Default_driver_zend',
                 ],
             ],
         ]

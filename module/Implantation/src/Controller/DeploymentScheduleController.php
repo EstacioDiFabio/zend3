@@ -106,7 +106,7 @@ class DeploymentScheduleController extends ImplantationController
         if ($this->getRequest()->isGet()) {
 
             $search = $this->params()->fromQuery();
-            $finder = $this->windelFilter()->performWhereString($search, $alias);
+            $finder = $this->csecFilter()->performWhereString($search, $alias);
 
         } else {
             $finder = $alias.".id > 0";
@@ -131,7 +131,7 @@ class DeploymentScheduleController extends ImplantationController
                     '2' => $deploymentSchedule->getTime()->format('H:i'),
                     '3' => $deploymentSchedule->getTimeEnd() ? $deploymentSchedule->getTimeEnd()->format('H:i') : "",
                     '4' => $deploymentSchedule->getStatusAsString(),
-                    '5' => $deploymentSchedule->getStatus() == 1 ? $this->windelHtml()->getActionButton('agendamento', $deploymentSchedule->getId()) : "",
+                    '5' => $deploymentSchedule->getStatus() == 1 ? $this->csecHtml()->getActionButton('agendamento', $deploymentSchedule->getId()) : "",
                 ];
 
             }
@@ -150,7 +150,7 @@ class DeploymentScheduleController extends ImplantationController
 
         // Create DeploymentSchedule form
         $form = new DeploymentScheduleForm('create', $this->entityManager);
-        $cliNome = $this->windelAPI()->doGETRequest("nome-cliente", $this->getRequest(), 0, $id);
+        $cliNome = $this->csecAPI()->doGETRequest("nome-cliente", $this->getRequest(), 0, $id);
 
         // Check if DeploymentSchedule has submitted the form
         if ($this->getRequest()->isGet()) {
@@ -172,7 +172,7 @@ class DeploymentScheduleController extends ImplantationController
                 $data['crm_user'] = $this->currentUser->getUserIdCrm();
                 $data['id_client'] = (int)$data['id_client'];
                 $data['id_motivo'] = (int)431;
-                $data['id_attendance_crm'] = $this->windelAPI()->doPOSTRequest("agendamento-implantacao", $data);
+                $data['id_attendance_crm'] = $this->csecAPI()->doPOSTRequest("agendamento-implantacao", $data);
                 unset($data['submit']);
 
                 // Add DeploymentSchedule.
@@ -217,7 +217,7 @@ class DeploymentScheduleController extends ImplantationController
 
         $returnValue = [];
         foreach ($result as $key => $value) {
-            $formulario = $this->windelFilter()->unSlugfy($value['formulario']);
+            $formulario = $this->csecFilter()->unSlugfy($value['formulario']);
             $returnValue[$formulario][$key] = $value;
         }
 
@@ -255,7 +255,7 @@ class DeploymentScheduleController extends ImplantationController
         // Check if user has submitted the form
         if ($this->getRequest()->isPost()) {
 
-            $scheduling = $this->windelAPI()->doGETRequest("agendamento-implantacao",
+            $scheduling = $this->csecAPI()->doGETRequest("agendamento-implantacao",
                                                     $this->getRequest(),
                                                     0,
                                                     $deploymentSchedule->getIdAttendanceCrm());
@@ -300,11 +300,11 @@ class DeploymentScheduleController extends ImplantationController
             $form->setData($data);
         }
 
-        $scheduling = $this->windelAPI()->doGETRequest("agendamento-implantacao",
+        $scheduling = $this->csecAPI()->doGETRequest("agendamento-implantacao",
                                                        $this->getRequest(), 0,
                                                        $deploymentSchedule->getIdAttendanceCrm());
 
-        $produtoCliente = $this->windelAPI()->doGETRequest('produto-cliente',
+        $produtoCliente = $this->csecAPI()->doGETRequest('produto-cliente',
                                                            $this->getRequest(), 0,
                                                            $scheduling[0]['atdIdcliente']);
 
@@ -339,7 +339,7 @@ class DeploymentScheduleController extends ImplantationController
 
     private function getHorasDisponiveis($idContrato, $totalHoras)
     {
-        $horasDisponiveis = $this->windelAPI()
+        $horasDisponiveis = $this->csecAPI()
                                  ->doGETRequest("horas-disponiveis-implantacao",
                                                 $this->getRequest(), 0, $idContrato);
 
@@ -424,11 +424,11 @@ class DeploymentScheduleController extends ImplantationController
             $question = "<div class='form-group {$obrigatorio}'>";
 
                 if(!$respostas){
-                    $question .= $this->windelInput()->createInput($pergunta, false, $idDeploymentSchedule, $enunciado);
+                    $question .= $this->csecInput()->createInput($pergunta, false, $idDeploymentSchedule, $enunciado);
                 } else {
                     $question .= "<label class='control-label'>{$enunciado}</label><br>";
                     foreach($respostas as $resposta){
-                        $question .= $this->windelInput()->createInput($pergunta, $resposta, $idDeploymentSchedule, false);
+                        $question .= $this->csecInput()->createInput($pergunta, $resposta, $idDeploymentSchedule, false);
                     }
                 }
 
@@ -504,12 +504,12 @@ class DeploymentScheduleController extends ImplantationController
 
         $atdCRM = $iz->getIdAttendanceCrm();
         // BUSCA O REGISTRO DE ATENDIMENTO.
-        $scheduling = $this->windelAPI()->doGETRequest("agendamento-implantacao",
+        $scheduling = $this->csecAPI()->doGETRequest("agendamento-implantacao",
                                                        $this->getRequest(), 0,
                                                        $atdCRM);
         $cot = $scheduling[0]['atdIdcontrato'];
         // BUSCA O REGISTRO DO PEDIDO DE IMPLANTACAO.
-        $pedImp = $this->windelAPI()->doGETRequest('contratos',
+        $pedImp = $this->csecAPI()->doGETRequest('contratos',
                                                    $this->getRequest(), 0,
                                                    $cot);
 
@@ -544,7 +544,7 @@ class DeploymentScheduleController extends ImplantationController
         $params['cotImplantacaoAtendimento'] = $atdCRM;
         $params['cotImplantacaoTipoRoteiro'] = $tipoRoteiro;
 
-        return $this->windelAPI()->doPOSTRequest('contratos', $params);
+        return $this->csecAPI()->doPOSTRequest('contratos', $params);
     }
 
     /**
@@ -562,7 +562,7 @@ class DeploymentScheduleController extends ImplantationController
                                            ->find($data['id']);
 
                 // BUSCA O AGENDAMENTO ATUAL NO CRM
-                $atdCRM = $this->windelAPI()->doGETRequest("agendamento-implantacao",
+                $atdCRM = $this->csecAPI()->doGETRequest("agendamento-implantacao",
                                                         $this->getRequest(), 0,
                                                         $deploymentSchedule->getIdAttendanceCrm());
                 $atdCRM = $atdCRM[0];
@@ -619,7 +619,7 @@ class DeploymentScheduleController extends ImplantationController
         $dataSave['atdContato']    = "Administrador do Sistema.";
         $dataSave['atdConfirmado'] = 1;
 
-        return $this->windelAPI()->doPOSTRequest("agendamento-implantacao", (object)$dataSave);
+        return $this->csecAPI()->doPOSTRequest("agendamento-implantacao", (object)$dataSave);
     }
 
     private function gerarNovoAtendimentoZend($atdAtual, $novo, $dadosAtual, $clienteNome, $clienteEmail)
@@ -643,12 +643,12 @@ class DeploymentScheduleController extends ImplantationController
     private function finalizarAgendamentoCRM($idAtendimento, $dados)
     {
 
-        return $this->windelAPI()->doPOSTRequest("agendamento-implantacao", (object)$dados, $idAtendimento);
+        return $this->csecAPI()->doPOSTRequest("agendamento-implantacao", (object)$dados, $idAtendimento);
     }
 
     private function atualizarHorasDisponiveis($atdAtual, $tempoTotal)
     {
-        $horasDisponiveis = $this->windelAPI()
+        $horasDisponiveis = $this->csecAPI()
                                  ->doGETRequest("horas-disponiveis-implantacao",
                                                 $this->getRequest(), 0, $atdAtual['atdIdcontrato']);
 
@@ -666,7 +666,7 @@ class DeploymentScheduleController extends ImplantationController
         $dataSave['HUS_IDCLIENTE'] = $atdAtual['atdIdcliente'];
         $dataSave['atdIdcontrato'] = $atdAtual['atdIdcontrato'];
 
-        return $this->windelAPI()->doPOSTRequest("horas-disponiveis-implantacao", (object)$dataSave, $horasDisponiveis['id']);
+        return $this->csecAPI()->doPOSTRequest("horas-disponiveis-implantacao", (object)$dataSave, $horasDisponiveis['id']);
     }
 
     /**
@@ -728,7 +728,7 @@ class DeploymentScheduleController extends ImplantationController
         $idCRM = $deploymentSchedule->getIdAttendanceCrm();
         $dataSave['atdIdmotivo'] = 431;
 
-        return $this->windelAPI()->doPOSTRequest("agendamento-implantacao", (object)$dataSave, $idCRM);
+        return $this->csecAPI()->doPOSTRequest("agendamento-implantacao", (object)$dataSave, $idCRM);
     }
 
     public function startImplantacaoAction()

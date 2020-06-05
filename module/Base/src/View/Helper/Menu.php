@@ -77,8 +77,8 @@ class Menu extends AbstractHelper
             $result .='<button class="navbar-toggler collapsed"
                                type="button"
                                data-toggle="collapse"
-                               data-target="#navbar-windel"
-                               aria-controls="navbar-windel"
+                               data-target="#navbar-csec"
+                               aria-controls="navbar-csec"
                                aria-expanded="false"
                                aria-label="Expandir menu">';
 
@@ -94,7 +94,7 @@ class Menu extends AbstractHelper
             $result .= '</a>';
 
 
-            $result .= '<div class="collapse navbar-collapse" id="navbar-windel">';
+            $result .= '<div class="collapse navbar-collapse" id="navbar-csec">';
                 $result .= '<ul class="navbar-nav mr-auto">';
                             foreach ($this->items as $item) {
                                 if(!isset($item['float']) || $item['float']=='left')

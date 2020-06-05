@@ -83,7 +83,7 @@ class QuestionController extends CMSController
         if ($this->getRequest()->isGet()) {
 
             $search = $this->params()->fromQuery();
-            $finder = $this->windelFilter()->performWhereString($search);
+            $finder = $this->csecFilter()->performWhereString($search);
 
         } else {
             $finder = "q.id > 0";
@@ -105,12 +105,12 @@ class QuestionController extends CMSController
                 $returnArr[$key] = [
 
                     '0' => $quiz->getQuestionFormAsString(),
-                    '1' => $this->windelHtml()->getLink('questionario', $quiz->getId(), $quiz->getName(), 'Visualizar'),
+                    '1' => $this->csecHtml()->getLink('questionario', $quiz->getId(), $quiz->getName(), 'Visualizar'),
                     '2' => $quiz->getTypeAsString(),
                     '3' => $quiz->getSequence(),
                     '4' => $quiz->getRequiredAsString(),
                     '5' => $quiz->getStatusAsString(),
-                    '6' => $this->windelHtml()->getActionButton('questionario', $quiz->getId()),
+                    '6' => $this->csecHtml()->getActionButton('questionario', $quiz->getId()),
                 ];
 
             }
@@ -195,10 +195,10 @@ class QuestionController extends CMSController
 
         if($questionFields){
             foreach ($questionFields as $field) {
-                $pergunta .= $this->windelInput()->createInput($question, $field);
+                $pergunta .= $this->csecInput()->createInput($question, $field);
             }
         } else {
-            $pergunta .= $this->windelInput()->createInput($question);
+            $pergunta .= $this->csecInput()->createInput($question);
         }
 
         $pergunta .= "</div> </div>";

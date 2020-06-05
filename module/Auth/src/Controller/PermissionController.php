@@ -69,7 +69,7 @@ class PermissionController extends CMSController
         if ($this->getRequest()->isGet()) {
 
             $search = $this->params()->fromQuery();
-            $finder = $this->windelFilter()->performWhereString($search, $alias);
+            $finder = $this->csecFilter()->performWhereString($search, $alias);
 
         } else {
             $finder = $alias.".id > 0";
@@ -90,9 +90,9 @@ class PermissionController extends CMSController
 
                 $returnArr[$key] = [
 
-                    '0' => $this->windelHtml()->getLink('permissions', $permission->getId(), $permission->getName(), 'Visualizar'),
+                    '0' => $this->csecHtml()->getLink('permissions', $permission->getId(), $permission->getName(), 'Visualizar'),
                     '1' => $permission->getDescription(),
-                    '2' => $this->windelHtml()->getActionButton('permissions', $permission->getId()),
+                    '2' => $this->csecHtml()->getActionButton('permissions', $permission->getId()),
                 ];
 
             }

@@ -8,7 +8,7 @@ use Auth\Service\PermissionManager;
 use CMS\Service\WorkGroupManager;
 use CMS\Service\DepartamentManager;
 use CMS\Service\OrganizationManager;
-use CMS\Service\WindelMail;
+use CMS\Service\CsecMail;
 
 /**
  * This is the factory class for UserManager service. The purpose of the factory
@@ -27,10 +27,10 @@ class UserManagerFactory
         $workGroupManager = $container->get(WorkGroupManager::class);
         $departamentManager = $container->get(DepartamentManager::class);
         $organizationManager = $container->get(OrganizationManager::class);
-        $windelMail = $container->get(WindelMail::class);
+        $csecMail = $container->get(CsecMail::class);
 
         return new UserManager($entityManager, $roleManager, $permissionManager,
                                $workGroupManager, $departamentManager, $organizationManager,
-                               $windelMail);
+                               $csecMail);
     }
 }

@@ -73,7 +73,7 @@ class QuestionFieldController extends CMSController
         if ($this->getRequest()->isGet()) {
 
             $search = $this->params()->fromQuery();
-            $finder = $this->windelFilter()->performWhereString($search, $alias);
+            $finder = $this->csecFilter()->performWhereString($search, $alias);
 
         } else {
             $finder = $alias.".id > 0";
@@ -93,14 +93,14 @@ class QuestionFieldController extends CMSController
 
                 $returnArr[$key] = [
 
-                    '0' => $this->windelHtml()->getLink('campos',
+                    '0' => $this->csecHtml()->getLink('campos',
                                                         $field->getId(),
                                                         $field->getQuestionAsString(),
                                                         'Visualizar'),
                     '1' => $field->getLabel(),
                     '2' => $field->getTypeAsString(),
                     '3' => $field->getSequence(),
-                    '4' => $this->windelHtml()->getActionButton('campos', $field->getId()),
+                    '4' => $this->csecHtml()->getActionButton('campos', $field->getId()),
                 ];
 
             }
@@ -132,7 +132,7 @@ class QuestionFieldController extends CMSController
 
                 // Get filtered and validated data
                 $data = $form->getData();
-                $data['identifier'] = $this->windelFilter()->slugfy($data['identifier']);
+                $data['identifier'] = $this->csecFilter()->slugfy($data['identifier']);
                 // Add departament.
                 $questionFields = $this->questionFieldManager->addQuestionField($data);
 
@@ -174,7 +174,7 @@ class QuestionFieldController extends CMSController
             return;
         }
 
-        $input = $this->windelInput()->createInput($questionField);
+        $input = $this->csecInput()->createInput($questionField);
 
         return new ViewModel([
             'questionField' => $questionField,
@@ -228,7 +228,7 @@ class QuestionFieldController extends CMSController
                 // Get filtered and validated data
                 $data = $form->getData();
 
-                $data['identifier'] = $this->windelFilter()->slugfy($data['identifier']);
+                $data['identifier'] = $this->csecFilter()->slugfy($data['identifier']);
 
                 // Update the questionField.
                 $questionFields = $this->questionFieldManager->updateQuestionField($questionField,

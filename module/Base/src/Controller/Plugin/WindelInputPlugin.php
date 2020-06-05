@@ -7,7 +7,7 @@ use Quiz\V1\Entity\QuestionFieldFilledValue;
 /**
  * This controller plugin is used for role-based access control (RBAC).
  */
-class WindelInputPlugin extends AbstractPlugin
+class CsecInputPlugin extends AbstractPlugin
 {
     /**
      * Entity manager.

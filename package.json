@@ -1,15 +1,15 @@
 {
-  "name": "zendel",
+  "name": "zend",
   "version": "1.0.0",
-  "description": "windel the newest configuration",
-  "main": "windel.js",
+  "description": "Zend 3 the newest configuration",
+  "main": "global.js",
   "scripts": {},
   "keywords": [
-    "windel",
+    "estacio",
     "javascript"
   ],
   "private": true,
-  "author": "windel",
+  "author": "estacio",
   "license": "ISC",
   "devDependencies": {
     "gulp": "^3.9.1",

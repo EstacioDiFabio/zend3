@@ -9,7 +9,7 @@
     box-shadow: 0px 0px 10px;
 }
 .navbar{
-    background-image: linear-gradient(to bottom, $red-windel-slight 0, $red-windel-intense 100%);
+    background-image: linear-gradient(to bottom, $red-csec-slight 0, $red-csec-intense 100%);
     .navbar-brand{
         color: $white;
         font-weight: 700;
@@ -22,13 +22,13 @@
         }
     }
     &:focus{
-        color: $red-windel-intense;
-        outline-color: $red-windel-intense;
+        color: $red-csec-intense;
+        outline-color: $red-csec-intense;
     }
     .dropdown-item:focus{
-        color: $red-windel-intense;
+        color: $red-csec-intense;
         background-color: $white;
-        outline-color: $red-windel-intense;
+        outline-color: $red-csec-intense;
     }
     .dropdown-item.active,
     .dropdown-item:active{
@@ -48,7 +48,7 @@
         font-weight: 600;
         background-color: $white;
         a {
-            color: $red-windel-intense;
+            color: $red-csec-intense;
         }
 
     }
@@ -58,7 +58,7 @@
         }
     }
 }
-.windel-breadcumb{
+.csec-breadcumb{
     margin-left: 50px;
 }
 .navbar-breadcrumb{
@@ -67,9 +67,9 @@
 .breadcrumb{
     font-size: 14px;
     a:not(.btn){
-            color: $red-windel-intense !important;
+            color: $red-csec-intense !important;
         &:hover, &:active{
-            color: $red-windel-slight !important;
+            color: $red-csec-slight !important;
         }
     }
 }

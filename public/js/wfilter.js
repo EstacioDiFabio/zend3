@@ -1,5 +1,5 @@
-define(['jquery', 'bootbox', 'windel', 'wgrid', 'notifIt', 'wform'],
-    function($, bootbox, windel, wgrid, notif, wform) {
+define(['jquery', 'bootbox', 'global', 'wgrid', 'notifIt', 'wform'],
+    function($, bootbox, global, wgrid, notif, wform) {
 
         'use strict';
 
@@ -58,7 +58,7 @@ define(['jquery', 'bootbox', 'windel', 'wgrid', 'notifIt', 'wform'],
                             $.ajax({
 
                                 type: 'GET',
-                                url: windel.url()+"/search",
+                                url: global.url()+"/search",
                                 data: {
                                     'column': column,
                                     'operator': operator,

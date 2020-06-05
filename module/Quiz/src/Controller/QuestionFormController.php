@@ -69,7 +69,7 @@ class QuestionFormController extends CMSController
         if ($this->getRequest()->isGet()) {
 
             $search = $this->params()->fromQuery();
-            $finder = $this->windelFilter()->performWhereString($search, $alias);
+            $finder = $this->csecFilter()->performWhereString($search, $alias);
 
         } else {
             $finder = $alias.".id > 0";
@@ -89,9 +89,9 @@ class QuestionFormController extends CMSController
 
                 $returnArr[$key] = [
 
-                    '0' => $this->windelHtml()->getLink('formulario', $form->getId(), $form->getName(), 'Visualizar'),
+                    '0' => $this->csecHtml()->getLink('formulario', $form->getId(), $form->getName(), 'Visualizar'),
                     '1' => $form->getStatusToggle(),
-                    '2' => $this->windelHtml()->getActionButton('formulario', $form->getId()),
+                    '2' => $this->csecHtml()->getActionButton('formulario', $form->getId()),
                 ];
 
             }
@@ -123,8 +123,8 @@ class QuestionFormController extends CMSController
 
                 // Get filtered and validated data
                 $data = $form->getData();
-                $data['name'] = $this->windelFilter()->slugfy($data['name']);
-                $data['local'] = $this->windelFilter()->slugfy($data['local']);
+                $data['name'] = $this->csecFilter()->slugfy($data['name']);
+                $data['local'] = $this->csecFilter()->slugfy($data['local']);
                 // Add departament.
                 $questionForm = $this->questionFormManager->addQuestionForm($data);
 
@@ -205,8 +205,8 @@ class QuestionFormController extends CMSController
 
                 // Get filtered and validated data
                 $data = $form->getData();
-                $data['name'] = $this->windelFilter()->slugfy($data['name']);
-                $data['local'] = $this->windelFilter()->slugfy($data['local']);
+                $data['name'] = $this->csecFilter()->slugfy($data['name']);
+                $data['local'] = $this->csecFilter()->slugfy($data['local']);
 
                 // Update the questionForm.
                 $questionFormS = $this->questionFormManager->updateQuestionForm($questionForm, $data);

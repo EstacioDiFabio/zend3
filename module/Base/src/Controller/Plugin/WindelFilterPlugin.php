@@ -6,7 +6,7 @@ use Zend\Mvc\Controller\Plugin\AbstractPlugin;
 /**
  * This controller plugin is used for role-based access control (RBAC).
  */
-class WindelFilterPlugin extends AbstractPlugin
+class CsecFilterPlugin extends AbstractPlugin
 {
     /**
      * Entity manager.

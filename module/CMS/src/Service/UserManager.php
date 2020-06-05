@@ -54,14 +54,14 @@ class UserManager
      */
     private $organizationManager;
 
-    private $windelMail;
+    private $csecMail;
 
     /**
      * Constructs the service.
      */
     public function __construct($entityManager, $roleManager, $permissionManager,
                                 $workGroupManager, $departamentManager, $organizationManager,
-                                $windelMail)
+                                $csecMail)
     {
         $this->entityManager = $entityManager;
         $this->roleManager = $roleManager;
@@ -69,7 +69,7 @@ class UserManager
         $this->workGroupManager = $workGroupManager;
         $this->departamentManager = $departamentManager;
         $this->organizationManager = $organizationManager;
-        $this->windelMail = $windelMail;
+        $this->csecMail = $csecMail;
 
     }
 
@@ -415,7 +415,7 @@ class UserManager
             $user = $this->entityManager->getRepository(User::class)->findOneBy([]);
             if ($user==null) {
                 $user = new User();
-                $user->setEmail('root@windel.com.br');
+                $user->setEmail('root@csec.com.br');
                 $user->setFirstName('admin');
                 $bcrypt = new Bcrypt();
                 $passwordHash = $bcrypt->create('r00tl33s');
@@ -494,7 +494,7 @@ class UserManager
             'recovery_link' => $passwordResetUrl,
         ];
 
-        $this->windelMail->sendMail($user, $subject, "recovery_mail", $options, $body);
+        $this->csecMail->sendMail($user, $subject, "recovery_mail", $options, $body);
 
     }
 

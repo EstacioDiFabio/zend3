@@ -2,16 +2,16 @@
 namespace Base\Controller\Plugin\Factory;
 
 use Interop\Container\ContainerInterface;
-use Base\Controller\Plugin\WindelFilterPlugin;
+use Base\Controller\Plugin\CsecFilterPlugin;
 
-class WindelFilterPluginFactory
+class CsecFilterPluginFactory
 {
     public function __invoke(ContainerInterface $container)
     {
         $entityManager = $container->get('doctrine.entitymanager.orm_default');
         $authService = $container->get(\Zend\Authentication\AuthenticationService::class);
 
-        return new WindelFilterPlugin($entityManager, $authService);
+        return new CsecFilterPlugin($entityManager, $authService);
     }
 }
 

@@ -94,7 +94,7 @@
                 /* Contém funções genericas comuns para todos os lugares*/
                 require(['jquery', 'bootbox'], function($, bt) {
 
-                    require(['windel'], function(app) {
+                    require(['global'], function(app) {
 
                         $(document).ready(function(){
                             app.init();
@@ -112,7 +112,7 @@
                     });
                 });
                 /* Contem metodos para gerenciar os grids */
-                require(['jquery', 'bootbox', 'windel'], function($, bt, w) {
+                require(['jquery', 'bootbox', 'global'], function($, bt, w) {
 
                     require(['wgrid'], function(app) {
 
@@ -122,7 +122,7 @@
                     });
                 });
                 /* Contem metodos para gerenciar o formulario */
-                require(['jquery', 'bootbox', 'windel', 'wgrid', 'notifIt'], function($, bt, w, wg, n) {
+                require(['jquery', 'bootbox', 'global', 'wgrid', 'notifIt'], function($, bt, w, wg, n) {
 
                     require(['wform'], function(app) {
 
@@ -132,7 +132,7 @@
                     });
                 });
                 /* Contem metodos para gerenciar o formulario */
-                require(['jquery', 'bootbox', 'windel', 'jtimepicker', 'easytimer'], function($, bt, w, jtp, et) {
+                require(['jquery', 'bootbox', 'global', 'jtimepicker', 'easytimer'], function($, bt, w, jtp, et) {
 
                     require(['wimplantacao'], function(app) {
 
@@ -142,7 +142,7 @@
                     });
                 });
                 /* Contem metodos para gerenciar os filtros de pesquisa */
-                require(['jquery', 'bootbox', 'windel', 'wgrid', 'notifIt', 'wform'], function($, bt, w, wg, n, wf) {
+                require(['jquery', 'bootbox', 'global', 'wgrid', 'notifIt', 'wform'], function($, bt, w, wg, n, wf) {
 
                     require(['wfilter'], function(app) {
 

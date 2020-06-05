@@ -69,7 +69,7 @@ class WorkGroupController extends CMSController
             if ($this->getRequest()->isGet()) {
 
                 $search = $this->params()->fromQuery();
-                $finder = $this->windelFilter()->performWhereString($search, $alias);
+                $finder = $this->csecFilter()->performWhereString($search, $alias);
 
             } else {
                 $finder = $alias.".id > 0";
@@ -95,9 +95,9 @@ class WorkGroupController extends CMSController
 
                     $returnArr[$key] = [
 
-                        '0' => $this->windelHtml()->getLink('grupos', $workGroup->getId(), $workGroup->getName(), 'Visualizar'),
+                        '0' => $this->csecHtml()->getLink('grupos', $workGroup->getId(), $workGroup->getName(), 'Visualizar'),
                         '1' => $workGroup->getStatusToggle(),
-                        '2' => $this->windelHtml()->getActionButton('grupos', $workGroup->getId()),
+                        '2' => $this->csecHtml()->getActionButton('grupos', $workGroup->getId()),
                     ];
                 }
             }

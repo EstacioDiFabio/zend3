@@ -1,5 +1,5 @@
-define(['jquery', 'bootbox', 'windel', 'wgrid', 'notifIt'],
-    function($, bootbox, windel, wgrid, notif) {
+define(['jquery', 'bootbox', 'global', 'wgrid', 'notifIt'],
+    function($, bootbox, global, wgrid, notif) {
 
         'use strict';
 

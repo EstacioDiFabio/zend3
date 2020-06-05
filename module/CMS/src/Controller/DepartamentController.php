@@ -67,7 +67,7 @@ class DepartamentController extends CMSController
         if ($this->getRequest()->isGet()) {
 
             $search = $this->params()->fromQuery();
-            $finder = $this->windelFilter()->performWhereString($search, $alias);
+            $finder = $this->csecFilter()->performWhereString($search, $alias);
 
         } else {
             $finder = $alias.".id > 0";
@@ -87,9 +87,9 @@ class DepartamentController extends CMSController
 
                 $returnArr[$key] = [
 
-                    '0' => $this->windelHtml()->getLink('setores', $departament->getId(), $departament->getName(), 'Visualizar'),
+                    '0' => $this->csecHtml()->getLink('setores', $departament->getId(), $departament->getName(), 'Visualizar'),
                     '1' => $departament->getStatusToggle(),
-                    '2' => $this->windelHtml()->getActionButton('setores', $departament->getId()),
+                    '2' => $this->csecHtml()->getActionButton('setores', $departament->getId()),
                 ];
 
             }

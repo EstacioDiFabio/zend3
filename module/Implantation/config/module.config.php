@@ -16,7 +16,7 @@ return [
 
     'doctrine' => [
         'driver' => [
-            'Windel_driver' => [
+            'Default_driver_zend' => [
                 'class' => AnnotationDriver::class,
                 'cache' => 'array',
                 'paths' => [
@@ -25,7 +25,7 @@ return [
             ],
             'orm_default' => [
                 'drivers' => [
-                    'Implantation' => 'Windel_driver',
+                    'Implantation' => 'Default_driver_zend',
                 ],
             ],
         ],

@@ -16,7 +16,7 @@ return [
 
     'doctrine' => [
         'driver' => [
-            'Windel_driver' => [
+            'Default_driver_zend' => [
                 'class' => AnnotationDriver::class,
                 'cache' => 'array',
                 'paths' => [
@@ -25,7 +25,7 @@ return [
             ],
             'orm_default' => [
                 'drivers' => [
-                    'CMS' => 'Windel_driver',
+                    'CMS' => 'Default_driver_zend',
                 ],
             ],
         ],
@@ -201,7 +201,7 @@ return [
 
             Service\NavManager::class          => Service\Factory\NavManagerFactory::class,
 
-            Service\WindelMail::class          => Service\Factory\WindelMailFactory::class,
+            Service\CsecMail::class          => Service\Factory\CsecMailFactory::class,
             Service\MailTemplateManager::class => Service\Factory\MailTemplateManagerFactory::class,
             Service\ImageManager::class        => InvokableFactory::class,
         ],

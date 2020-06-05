@@ -10,7 +10,7 @@ use Zend\Json\Json;
 /**
  * This controller plugin is used for role-based access control (RBAC).
  */
-class WindelAPIPlugin extends AbstractPlugin
+class CsecAPIPlugin extends AbstractPlugin
 {
     /**
      * Entity manager.

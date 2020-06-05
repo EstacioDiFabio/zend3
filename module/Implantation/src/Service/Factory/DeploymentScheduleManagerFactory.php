@@ -3,7 +3,7 @@ namespace Implantation\Service\Factory;
 
 use Interop\Container\ContainerInterface;
 use Implantation\Service\DeploymentScheduleManager;
-use CMS\Service\WindelMail;
+use CMS\Service\CsecMail;
 
 /**
  * This is the factory class for DeploymentScheduleManager service. The purpose of the factory
@@ -17,8 +17,8 @@ class DeploymentScheduleManagerFactory
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
         $entityManager = $container->get('doctrine.entitymanager.orm_default');
-        $windelMail = $container->get(WindelMail::class);
+        $csecMail = $container->get(CsecMail::class);
 
-        return new DeploymentScheduleManager($entityManager, $windelMail);
+        return new DeploymentScheduleManager($entityManager, $csecMail);
     }
 }

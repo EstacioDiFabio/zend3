@@ -37,7 +37,7 @@ class IndexController extends ImplantationController
      */
     public function indexAction()
     {
-        $datas = $this->windelAPI()->doGETRequest("contratos-processo-concluido", $this->getRequest());
+        $datas = $this->csecAPI()->doGETRequest("contratos-processo-concluido", $this->getRequest());
 
         return new ViewModel([
             'datas' => $datas,
@@ -55,8 +55,8 @@ class IndexController extends ImplantationController
         if ($this->getRequest()->isGet()) {
 
             $search = $this->params()->fromQuery();
-            $finder = $this->windelFilter()->performWhereString($search);
-            $responseData = $this->windelAPI()->doGETRequest("contratos-processo-concluido", $this->getRequest(), $finder);
+            $finder = $this->csecFilter()->performWhereString($search);
+            $responseData = $this->csecAPI()->doGETRequest("contratos-processo-concluido", $this->getRequest(), $finder);
         }
 
         $retorno = [];

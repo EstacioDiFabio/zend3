@@ -1,10 +1,10 @@
 @import 'variables/colours';
 @import 'mixin/m_selection';
 
-@include selection($red-windel-intense, $white);
+@include selection($red-csec-intense, $white);
 
-.red-windel{
-    color: $red-windel-intense;
+.red-csec{
+    color: $red-csec-intense;
 }
 .pekerow {
     overflow: hidden;
@@ -28,7 +28,7 @@
 @media (min-width: 992px) {
     #user-form, #deployment-schedule-form {
         .half-trace {
-            border-left: 1px solid $red-windel-intense;
+            border-left: 1px solid $red-csec-intense;
             height: 100%;
         }
     }
@@ -36,7 +36,7 @@
 @media (max-width: 991.98px) {
     #user-form{
         .half-trace {
-            border-top: 1px solid $red-windel-intense;
+            border-top: 1px solid $red-csec-intense;
             height: 100%;
             border-width: 50%;
         }
@@ -75,7 +75,7 @@
 }
 
 .form-group > ul >li{
-    color: $red-windel-slight;
+    color: $red-csec-slight;
 }
 
 .dinamic-input{
@@ -89,6 +89,6 @@
 
 }
 .half-trace-before{
-    border-right: 1px solid $red-windel-intense;
+    border-right: 1px solid $red-csec-intense;
     height: 90%;
 }

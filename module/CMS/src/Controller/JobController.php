@@ -69,7 +69,7 @@ class JobController extends CMSController
         if ($this->getRequest()->isGet()) {
 
             $search = $this->params()->fromQuery();
-            $finder = $this->windelFilter()->performWhereString($search, $alias);
+            $finder = $this->csecFilter()->performWhereString($search, $alias);
 
         } else {
             $finder = $alias.".id > 0";
@@ -89,10 +89,10 @@ class JobController extends CMSController
 
                 $returnArr[$key] = [
 
-                    '0' => $this->windelHtml()->getLink('cargos', $job->getId(), $job->getName(), 'Visualizar'),
+                    '0' => $this->csecHtml()->getLink('cargos', $job->getId(), $job->getName(), 'Visualizar'),
                     '1' => $job->getIdTopJob(),
                     '2' => $job->getStatusToggle(),
-                    '3' => $this->windelHtml()->getActionButton('cargos', $job->getId()),
+                    '3' => $this->csecHtml()->getActionButton('cargos', $job->getId()),
                 ];
 
             }
