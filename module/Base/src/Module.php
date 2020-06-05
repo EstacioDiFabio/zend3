@@ -17,20 +17,20 @@ class Module
 
     const VERSION  = '1.0';
 
-    const DATABASE = 'zendel';
+    const DATABASE = 'csec';
     const USERNAME = 'root';
-    const PASSWORD = 'Root@less123';
+    const PASSWORD = 'root';
 
-    const LOG_DATABASE = 'zendel_log';
+    const LOG_DATABASE = 'csec_log';
     const LOG_USERNAME = 'root';
-    const LOG_PASSWORD = 'Root@less123';
+    const LOG_PASSWORD = 'root';
 
     const UPLOAD_DIR = './data/upload/';
-    const ROOT_PATH  = '/zendel/master/public';
+    const ROOT_PATH  = '/zend2';
 
     const API_VERBOSE   = 'http://';
     const API_DOMAIN    = 'localhost/';
-    const API_ROOT_PATH = 'csec-api/master/public/';
+    const API_ROOT_PATH = 'csec-api/public/';
 
     const ENV     = 'development';
     const ENV_KEY = 'd2luZGVsOlcxbmQzbEB0ZXN0ZXM=';
