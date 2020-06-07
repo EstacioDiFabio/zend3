@@ -39,9 +39,7 @@
         "psr-4": {
             "Auth\\": "module/Auth/src/",
             "Base\\": "module/Base/src/",
-            "CMS\\": "module/CMS/src/",
-            "Implantation\\": "module/Implantation/src/",
-            "Quiz\\": "module/Quiz/src/"
+            "CMS\\": "module/CMS/src/"
         }
     },
     "autoload-dev": {
