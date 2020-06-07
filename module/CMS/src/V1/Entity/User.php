@@ -69,13 +69,6 @@ class User
     private $dateCreated;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="user_id_crm", type="integer", length=255, precision=0, scale=0, nullable=true, unique=false)
-     */
-    private $userIdCrm;
-
-    /**
      * @ORM\Column(name="pwd_reset_token")
      */
     protected $passwordResetToken;
@@ -85,15 +78,15 @@ class User
      */
     protected $passwordResetTokenCreationDate;
 
-    /**
-     * @var \CMS\V1\Entity\Job
-     *
-     * @ORM\ManyToOne(targetEntity="CMS\V1\Entity\Job")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_job", referencedColumnName="id", nullable=true)
-     * })
-     */
-    private $idJob;
+    // /**
+    //  * @var \CMS\V1\Entity\Job
+    //  *
+    //  * @ORM\ManyToOne(targetEntity="CMS\V1\Entity\Job")
+    //  * @ORM\JoinColumns({
+    //  *   @ORM\JoinColumn(name="id_job", referencedColumnName="id", nullable=true)
+    //  * })
+    //  */
+    // private $idJob;
 
     /**
      * @ORM\ManyToMany(targetEntity="Auth\V1\Entity\Role")
@@ -105,15 +98,6 @@ class User
     private $roles;
 
     /**
-     * @ORM\ManyToMany(targetEntity="CMS\V1\Entity\WorkGroup")
-     * @ORM\JoinTable(name="user_group",
-     *      joinColumns={@ORM\JoinColumn(name="id_user", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="id_group", referencedColumnName="id")}
-     *      )
-     */
-    private $workGroup;
-
-    /**
      * @ORM\ManyToMany(targetEntity="CMS\V1\Entity\Departament")
      * @ORM\JoinTable(name="user_departament",
      *      joinColumns={@ORM\JoinColumn(name="id_user", referencedColumnName="id")},
@@ -122,24 +106,14 @@ class User
      */
     private $departament;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="CMS\V1\Entity\Organization")
-     * @ORM\JoinTable(name="user_organization",
-     *      joinColumns={@ORM\JoinColumn(name="id_user", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="id_organization", referencedColumnName="id")}
-     *      )
-     */
-    private $organization;
-
+    
     /**
      * Constructor.
      */
     public function __construct()
     {
         $this->roles     = new ArrayCollection();
-        $this->workGroup = new ArrayCollection();
         $this->departament = new ArrayCollection();
-        $this->organization = new ArrayCollection();
     }
     /**
      * Returns possible statuses as array.
@@ -344,37 +318,37 @@ class User
         return $this->dateCreated;
     }
 
-    /**
-     * Set idJob
-     *
-     * @param \CMS\V1\Entity\Job $idJob
-     *
-     * @return User
-     */
-    public function setIdJob(\CMS\V1\Entity\Job $idJob = null)
-    {
-        $this->idJob = $idJob;
+    // /**
+    //  * Set idJob
+    //  *
+    //  * @param \CMS\V1\Entity\Job $idJob
+    //  *
+    //  * @return User
+    //  */
+    // public function setIdJob(\CMS\V1\Entity\Job $idJob = null)
+    // {
+    //     $this->idJob = $idJob;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
-    /**
-     * Get idJob
-     *
-     * @return \CMS\V1\Entity\Job
-     */
-    public function getIdJob()
-    {
-        return $this->idJob;
-    }
+    // /**
+    //  * Get idJob
+    //  *
+    //  * @return \CMS\V1\Entity\Job
+    //  */
+    // public function getIdJob()
+    // {
+    //     return $this->idJob;
+    // }
 
-    /**
-     * Returns the string of assigned role names.
-     */
-    public function getJobAsString()
-    {
-        return $this->getIdJob()->getName();
-    }
+    // /**
+    //  * Returns the string of assigned role names.
+    //  */
+    // public function getJobAsString()
+    // {
+    //     return $this->getIdJob()->getName();
+    // }
 
     /**
      * Returns the array of roles assigned to this user.
@@ -416,42 +390,6 @@ class User
     }
 
     /**
-     * Returns the array of workGroups assigned to this user.
-     * @return array
-     */
-    public function getWorkGroup()
-    {
-        return $this->workGroup;
-    }
-
-    /**
-     * Returns the string of assigned workGroup names.
-     */
-    public function getGroupAsString()
-    {
-        $workGroupList = '';
-
-        $count = count($this->workGroup);
-        $i = 0;
-        foreach ($this->workGroup as $group) {
-            $workGroupList .= $group->getName();
-            if ($i<$count-1)
-                $workGroupList .= ', ';
-            $i++;
-        }
-
-        return $workGroupList;
-    }
-
-    /**
-     * Assigns a workGroup to user.
-     */
-    public function addWorkGroup($group)
-    {
-        $this->workGroup->add($group);
-    }
-
-    /**
      * Returns the array of departaments assigned to this user.
      * @return array
      */
@@ -488,42 +426,6 @@ class User
     }
 
     /**
-     * Returns the array of organizations assigned to this user.
-     * @return array
-     */
-    public function getOrganization()
-    {
-        return $this->organization;
-    }
-
-    /**
-     * Returns the string of assigned organization names.
-     */
-    public function getOrganizationAsString()
-    {
-        $organizationList = '';
-
-        $count = count($this->organization);
-        $i = 0;
-        foreach ($this->organization as $organization) {
-            $organizationList .= $organization->getName();
-            if ($i<$count-1)
-                $organizationList .= ', ';
-            $i++;
-        }
-
-        return $organizationList;
-    }
-
-    /**
-     * Assigns a organization to user.
-     */
-    public function addOrganization($organization)
-    {
-        $this->organization->add($organization);
-    }
-
-    /**
      * Returns password reset token.
      * @return string
      */
@@ -557,30 +459,6 @@ class User
     public function setPasswordResetTokenCreationDate($date)
     {
         $this->passwordResetTokenCreationDate = $date;
-    }
-
-    /**
-     * Set userIdCrm
-     *
-     * @param integer $userIdCrm
-     *
-     * @return User
-     */
-    public function setUserIdCrm($userIdCrm)
-    {
-        $this->userIdCrm = $userIdCrm;
-
-        return $this;
-    }
-
-    /**
-     * Get userIdCrm
-     *
-     * @return integer
-     */
-    public function getUserIdCrm()
-    {
-        return $this->userIdCrm;
     }
 
 }

@@ -121,7 +121,7 @@ class EventListener implements ListenerAggregateInterface
 
         while (false !== ($entry = $controllers->read())) {
 
-            if ($entry !== "Factory" && $entry !== '.' && $entry !== '..') {
+            if ($entry !== "Factory" && $entry !== '.' && $entry !== '..') { 
                 array_push($control, substr($entry, 0, -4));
             }
         }

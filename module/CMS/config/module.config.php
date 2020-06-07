@@ -53,35 +53,7 @@ return [
                     ],
                     'defaults' => [
                         'controller'    => Controller\UserController::class,
-                        'action'        => 'index',
-                    ],
-                ],
-            ],
-            'jobs' => [
-                'type'    => Segment::class,
-                'options' => [
-                    'route'    => '/cargos[/:action[/:id]]',
-                    'constraints' => [
-                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                        'id' => '[a-zA-Z0-9_-]*',
-                    ],
-                    'defaults' => [
-                        'controller'    => Controller\JobController::class,
-                        'action'        => 'index',
-                    ],
-                ],
-            ],
-            'groups' => [
-                'type'    => Segment::class,
-                'options' => [
-                    'route'    => '/grupos[/:action[/:id]]',
-                    'constraints' => [
-                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                        'id' => '[a-zA-Z0-9_-]*',
-                    ],
-                    'defaults' => [
-                        'controller'    => Controller\WorkGroupController::class,
-                        'action'        => 'index',
+                        'action'        => 'index', 
                     ],
                 ],
             ],
@@ -95,20 +67,6 @@ return [
                     ],
                     'defaults' => [
                         'controller'    => Controller\DepartamentController::class,
-                        'action'        => 'index',
-                    ],
-                ],
-            ],
-            'organizations' => [
-                'type'    => Segment::class,
-                'options' => [
-                    'route'    => '/unidades[/:action[/:id]]',
-                    'constraints' => [
-                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                        'id' => '[a-zA-Z0-9_-]*',
-                    ],
-                    'defaults' => [
-                        'controller'    => Controller\OrganizationController::class,
                         'action'        => 'index',
                     ],
                 ],
@@ -136,10 +94,7 @@ return [
 
             Controller\IndexController::class        => Controller\Factory\IndexControllerFactory::class,
             Controller\UserController::class         => Controller\Factory\UserControllerFactory::class,
-            Controller\JobController::class          => Controller\Factory\JobControllerFactory::class,
-            Controller\WorkGroupController::class    => Controller\Factory\WorkGroupControllerFactory::class,
             Controller\DepartamentController::class  => Controller\Factory\DepartamentControllerFactory::class,
-            Controller\OrganizationController::class => Controller\Factory\OrganizationControllerFactory::class,
             Controller\MailTemplateController::class => Controller\Factory\MailTemplateControllerFactory::class,
             Controller\CMSController::class          => Controller\Factory\CMSControllerFactory::class,
 
@@ -173,16 +128,7 @@ return [
                                'changePassword', 'search', 'toggleActive'],
                                'allow' => '+basic.manage']
             ],
-            Controller\JobController::class => [
-                ['actions' => '*', 'allow' => '+basic.manage']
-            ],
-            Controller\WorkGroupController::class => [
-                ['actions' => '*','allow' => '+basic.manage']
-            ],
             Controller\DepartamentController::class => [
-                ['actions' => '*','allow' => '+basic.manage']
-            ],
-            Controller\OrganizationController::class => [
                 ['actions' => '*','allow' => '+basic.manage']
             ],
             Controller\MailTemplateController::class => [
@@ -193,14 +139,8 @@ return [
     'service_manager' => [
         'factories' => [
             Service\UserManager::class         => Service\Factory\UserManagerFactory::class,
-            Service\JobManager::class          => Service\Factory\JobManagerFactory::class,
-            Service\WorkGroupManager::class    => Service\Factory\WorkGroupManagerFactory::class,
             Service\DepartamentManager::class  => Service\Factory\DepartamentManagerFactory::class,
-            Service\OrganizationManager::class => Service\Factory\OrganizationManagerFactory::class,
-            Service\OrganizationOfficeHourManager::class => Service\Factory\OrganizationOfficeHourManagerFactory::class,
-
             Service\NavManager::class          => Service\Factory\NavManagerFactory::class,
-
             Service\CsecMail::class          => Service\Factory\CsecMailFactory::class,
             Service\MailTemplateManager::class => Service\Factory\MailTemplateManagerFactory::class,
             Service\ImageManager::class        => InvokableFactory::class,

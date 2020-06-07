@@ -30,27 +30,11 @@
         'class'=>''
         ]);
 
-    $form->get('user_id_crm')->setAttributes([
-        'class'=>'form-control'
-    ]);
-
     $form->get('roles')->setAttributes([
         'class'=>'form-control'
     ]);
 
-    $form->get('job')->setAttributes([
-        'class'=>'form-control'
-    ]);
-
-    $form->get('work_groups')->setAttributes([
-        'class'=>'form-control'
-    ]);
-
     $form->get('departaments')->setAttributes([
-        'class'=>'form-control'
-    ]);
-
-    $form->get('organizations')->setAttributes([
         'class'=>'form-control'
     ]);
 
@@ -99,12 +83,6 @@
                 <?= $this->formElementErrors($form->get('last_name')); ?>
             </div>
 
-            <div class="form-group">
-                <?= $this->formLabel($form->get('user_id_crm')); ?>
-                <?= $this->formElement($form->get('user_id_crm')); ?>
-                <?= $this->formElementErrors($form->get('user_id_crm')); ?>
-            </div>
-
         </div>
         <div class="col sm12 m6 half-trace">
             <div class="form-group">
@@ -114,28 +92,11 @@
             </div>
 
             <div class="form-group">
-                <?= $this->formLabel($form->get('job')); ?>
-                <?= $this->formElement($form->get('job')); ?>
-                <?= $this->formElementErrors($form->get('job')); ?>
-            </div>
-
-            <div class="form-group">
-                <?= $this->formLabel($form->get('work_groups')); ?>
-                <?= $this->formElement($form->get('work_groups')); ?>
-                <?= $this->formElementErrors($form->get('work_groups')); ?>
-            </div>
-
-            <div class="form-group">
                 <?= $this->formLabel($form->get('departaments')); ?>
                 <?= $this->formElement($form->get('departaments')); ?>
                 <?= $this->formElementErrors($form->get('departaments')); ?>
             </div>
-
-            <div class="form-group">
-                <?= $this->formLabel($form->get('organizations')); ?>
-                <?= $this->formElement($form->get('organizations')); ?>
-                <?= $this->formElementErrors($form->get('organizations')); ?>
-            </div>
+            
         </div>
         <div class="w-100"></div>
         <div class="col m12">

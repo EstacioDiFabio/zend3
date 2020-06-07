@@ -143,28 +143,6 @@ class UserForm extends Form
             ],
         ]);
 
-        // Add "jobs" field
-        $this->add([
-            'type'  => 'select',
-            'name' => 'job',
-            'options' => [
-                'label' => 'Cargo',
-                'empty_option' => '-------------',
-            ],
-        ]);
-
-        // Add "work_group" field
-        $this->add([
-            'type'  => 'select',
-            'name' => 'work_groups',
-            'attributes' => [
-                'multiple' => 'multiple',
-            ],
-            'options' => [
-                'label' => 'Grupos de Trabalho',
-            ],
-        ]);
-
         // Add "departament" field
         $this->add([
             'type'  => 'select',
@@ -174,27 +152,6 @@ class UserForm extends Form
             ],
             'options' => [
                 'label' => 'Setor(es)',
-            ],
-        ]);
-
-        // Add "organization" field
-        $this->add([
-            'type'  => 'select',
-            'name' => 'organizations',
-            'attributes' => [
-                'multiple' => 'multiple',
-            ],
-            'options' => [
-                'label' => 'Unidade(s)',
-            ],
-        ]);
-
-        // Add "user_id_crm" field
-        $this->add([
-            'type'  => 'number',
-            'name' => 'user_id_crm',
-            'options' => [
-                'label' => 'Identificador no CRM',
             ],
         ]);
 
@@ -404,61 +361,6 @@ class UserForm extends Form
             ],
         ]);
 
-        // Add input for "job" field
-        $inputFilter->add([
-            'class'    => ArrayInput::class,
-            'name'     => 'job',
-            'required' => true,
-            'filters'  => [
-                [
-                    'name' => 'ToInt'
-                ],
-            ],
-            'validators' => [
-                [
-                    'name' => GreaterThan::class,
-                    'options' => [
-                        'min'=>-1,
-                        'max'=>1,
-                        'messages' => [
-                            GreaterThan::NOT_GREATER => $this->notGreater
-                        ]
-                    ]
-                ],
-                [
-                    'name' => NotEmpty::class,
-                    'options' => [
-                        'messages' => [
-                            NotEmpty::IS_EMPTY => $this->notEmpty,
-                        ],
-                    ],
-                ],
-            ],
-        ]);
-
-        // Add input for "work_group" field
-        $inputFilter->add([
-            'class'    => ArrayInput::class,
-            'name'     => 'work_groups',
-            'required' => false,
-            'filters'  => [
-                [
-                    'name' => 'ToInt'
-                ],
-            ],
-            'validators' => [
-                [
-                    'name' => GreaterThan::class,
-                    'options' => [
-                        'min'=>0,
-                        'messages' => [
-                            GreaterThan::NOT_GREATER => $this->notGreater
-                        ]
-                    ]
-                ]
-            ],
-        ]);
-
         // Add input for "departament" field
         $inputFilter->add([
             'class'    => ArrayInput::class,
@@ -479,44 +381,6 @@ class UserForm extends Form
                         ]
                     ]
                 ]
-            ],
-        ]);
-
-        // Add input for "organization" field
-        $inputFilter->add([
-            'class'    => ArrayInput::class,
-            'name'     => 'organizations',
-            'required' => false,
-            'filters'  => [
-                [
-                    'name' => 'ToInt'
-                ],
-            ],
-            'validators' => [
-                [
-                    'name' => 'GreaterThan',
-                    'options' => [
-                        'min'=>0,
-                        'messages' => [
-                            GreaterThan::NOT_GREATER => $this->notGreater
-                        ]
-                    ]
-                ]
-            ],
-        ]);
-
-        $inputFilter->add([
-            'name'     => 'user_id_crm',
-            'required' => false,
-            'filters'  => [],
-            'validators' => [
-                [
-                    'name'    => 'StringLength',
-                    'options' => [
-                        'min' => 1,
-                        'max' => 11
-                    ],
-                ],
             ],
         ]);
 

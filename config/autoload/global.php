@@ -24,7 +24,7 @@ return [
             'orm_log' => [
                 'driverClass' => PDOMySqlDriver::class,
                 'params' => [
-                    'host'     => 'localhost',
+                    'host'     => '127.0.0.1',
                     'port'     => '3306',
                     'user'     => \Base\Module::LOG_USERNAME,
                     'password' => \Base\Module::LOG_PASSWORD,
@@ -41,7 +41,7 @@ return [
             'orm_default' => [
                 'driverClass' => PDOMySqlDriver::class,
                 'params' => [
-                    'host'     => 'localhost',
+                    'host'     => '127.0.0.1',
                     'port'     => '3306',
                     'user'     => \Base\Module::USERNAME,
                     'password' => \Base\Module::PASSWORD,

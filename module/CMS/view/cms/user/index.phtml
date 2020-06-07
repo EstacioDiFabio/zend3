@@ -37,7 +37,6 @@
                 <th>E-mail</th>
                 <th>Nome</th>
                 <th>Função</th>
-                <th>Cargo</th>
                 <th>Data de Criação</th>
                 <th>Status</th>
                 <th>Ações</th>
@@ -55,7 +54,6 @@
                     <td>
                         <?= $this->escapeHtml($user->getRolesAsString()); ?>
                     </td>
-                    <td><?= $user->getIdJob() ? $this->escapeHtml($user->getJobAsString()) : ""; ?></td>
                     <td><?= $this->escapeHtml($user->getDateCreated()->format('d/m/Y')); ?></td>
                     <td>
                         <div class="status_string_<?= $user->getId(); ?>">

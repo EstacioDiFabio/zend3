@@ -7,10 +7,6 @@ use Zend\View\Model\JsonModel;
 use CMS\Form\UserForm;
 use CMS\V1\Entity\User;
 use Auth\V1\Entity\Role;
-use CMS\V1\Entity\Job;
-use CMS\V1\Entity\WorkGroup;
-use CMS\V1\Entity\Departament;
-use CMS\V1\Entity\Organization;
 use CMS\Form\PasswordChangeForm;
 
 /**
@@ -103,7 +99,6 @@ class UserController extends CMSController
                     '0' => $this->csecHtml()->getLink('usuarios', $user->getId(), $user->getEmail(), 'Visualizar'),
                     '1' => $user->getFirstName()." ".$user->getLastName(),
                     '2' => $user->getRolesAsString(),
-                    '3' => $user->getIdJob() ? $user->getJobAsString() : "",
                     '4' => $user->getDateCreated()->format('d/m/Y'),
                     '5' => $user->getStatusToggle(),
                     '6' => $this->csecHtml()->getActionButton('usuarios', $user->getId()),
@@ -135,54 +130,6 @@ class UserController extends CMSController
         }
         array_push($return, $roleList);
 
-        // Get the list of all available jobs (sorted by name).
-        $allJobs = $this->entityManager->getRepository(Job::class)
-                ->findBy([], ['name'=>'ASC']);
-
-        $jobList = [];
-
-        foreach ($allJobs as $job) {
-            $jobList['jobs'][$job->getId()] = $job->getName();
-        }
-
-        array_push($return, $jobList);
-
-        // Get the list of all available workGroup (sorted by name).
-        $allWorkGroups = $this->entityManager->getRepository(WorkGroup::class)
-                ->findBy([], ['name'=>'ASC']);
-
-        $workGroupList['work_groups'] = [];
-
-        foreach ($allWorkGroups as $group) {
-            $workGroupList['work_groups'][$group->getId()] = $group->getName();
-        }
-
-        array_push($return, $workGroupList);
-
-        // Get the list of all available departaments (sorted by name).
-        $allDepartaments = $this->entityManager->getRepository(Departament::class)
-                ->findBy([], ['name'=>'ASC']);
-
-        $departamentList['departaments'] = [];
-
-        foreach ($allDepartaments as $departament) {
-            $departamentList['departaments'][$departament->getId()] = $departament->getName();
-        }
-
-        array_push($return, $departamentList);
-
-        // Get the list of all available organizations (sorted by name).
-        $allOrganizations = $this->entityManager->getRepository(Organization::class)
-                ->findBy([], ['name'=>'ASC']);
-
-        $organizationList['organizations'] = [];
-
-        foreach ($allOrganizations as $organization) {
-            $organizationList['organizations'][$organization->getId()] = $organization->getName();
-        }
-
-        array_push($return, $organizationList);
-
         return $return;
     }
 
@@ -197,16 +144,7 @@ class UserController extends CMSController
         $dependenciesList = $this->getDependeciesEntity();
 
         $roleList = $dependenciesList[0]['roles'];
-        $jobList = $dependenciesList[1]['jobs'];
-        $workGroupList = $dependenciesList[2]['work_groups'];
-        $departamentList = $dependenciesList[3]['departaments'];
-        $organizationList = $dependenciesList[4]['organizations'];
-
         $form->get('roles')->setValueOptions($roleList);
-        $form->get('job')->setValueOptions($jobList);
-        $form->get('work_groups')->setValueOptions($workGroupList);
-        $form->get('departaments')->setValueOptions($departamentList);
-        $form->get('organizations')->setValueOptions($organizationList);
 
         // Check if user has submitted the form
         if ($this->getRequest()->isPost()) {
@@ -296,16 +234,8 @@ class UserController extends CMSController
         $dependenciesList = $this->getDependeciesEntity();
 
         $roleList = $dependenciesList[0]['roles'];
-        $jobList = $dependenciesList[1]['jobs'];
-        $workGroupList = $dependenciesList[2]['work_groups'];
-        $departamentList = $dependenciesList[3]['departaments'];
-        $organizationList = $dependenciesList[4]['organizations'];
 
         $form->get('roles')->setValueOptions($roleList);
-        $form->get('job')->setValueOptions($jobList);
-        $form->get('work_groups')->setValueOptions($workGroupList);
-        $form->get('departaments')->setValueOptions($departamentList);
-        $form->get('organizations')->setValueOptions($organizationList);
 
         // Check if user has submitted the form
         if ($this->getRequest()->isPost()) {
@@ -344,30 +274,13 @@ class UserController extends CMSController
             foreach ($user->getRoles() as $role) {
                 $userRoleIds[] = $role->getId();
             }
-            $userWorkGroupIds = [];
-            foreach ($user->getWorkGroup() as $group) {
-                $userWorkGroupIds[] = $group->getId();
-            }
-            $userDepartamentIds = [];
-            foreach ($user->getDepartament() as $departament) {
-                $userDepartamentIds[] = $departament->getId();
-            }
-            $userOrganizationIds = [];
-            foreach ($user->getOrganization() as $organization) {
-                $userOrganizationIds[] = $organization->getId();
-            }
-
+            
             $form->setData(array(
                     'first_name'=>$user->getFirstName(),
                     'last_name'=>$user->getLastName(),
                     'email'=>$user->getEmail(),
-                    'user_id_crm'=>$user->getUserIdCrm(),
                     'roles' => $userRoleIds,
                     'status'=>$user->getStatus(),
-                    'job' => $user->getIdJob() ? $user->getIdJob()->getId() : "",
-                    'work_groups' => $userWorkGroupIds,
-                    'departaments' => $userDepartamentIds,
-                    'organizations' => $userOrganizationIds,
             ));
         }
 

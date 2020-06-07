@@ -32,32 +32,12 @@
                 <td><?= $this->escapeHtml($user->getFirstName()." ".$user->getLastName()); ?></th>
             </tr>
             <tr>
-                <th>CRM:</th>
-                <td><?= $user->getUserIdCrm(); ?></th>
-            </tr>
-            <tr>
                 <th>Data de criação:</th>
                 <td><?= $this->escapeHtml($user->getDateCreated()->format('d/m/Y')); ?></td>
             </tr>
             <tr>
                 <th>Funções:</th>
                 <td><?= $this->escapeHtml($user->getRolesAsString()) ?></th>
-            </tr>
-            <tr>
-                <th>Cargo:</th>
-                <td><?= $user->getIdJob() ? $this->escapeHtml($user->getJobAsString()) : ""; ?></th>
-            </tr>
-            <tr>
-                <th>Grupo(s) de Trabalho:</th>
-                <td><?= $this->escapeHtml($user->getGroupAsString()); ?></th>
-            </tr>
-            <tr>
-                <th>Setor(es):</th>
-                <td><?= $this->escapeHtml($user->getDepartamentAsString()); ?></th>
-            </tr>
-            <tr>
-                <th>Unidade(s):</th>
-                <td><?= $this->escapeHtml($user->getOrganizationAsString()); ?></th>
             </tr>
             <tr>
                 <th>Status:</th>

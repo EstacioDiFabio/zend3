@@ -22,22 +22,20 @@ class BaseController extends AbstractActionController
             $method  = $request->getMethod();
             $controllerName = $controller->params()->fromRoute()['controller'];
             $controllerName = substr($controllerName, strrpos($controllerName, "\\")+1 );
-
             $action = $controller->params()->fromRoute()['action'];
-
             $urlParam = "";
+
             if ($controller->params()->fromRoute('id', false)) {
                 $urlParam = $controller->params()->fromRoute('id', false);
             }
-
-            if($this->currentUser())
+            if($this->currentUser()){
                 $idUser = $this->currentUser()->getId();
-            else
+            } else {
                 $idUser = $this->get_client_ip();
-
+            }
             $parameter = null;
 
-            if ( count($this->params()->fromQuery()) > 0){
+            if (count($this->params()->fromQuery()) > 0) {
                 $parameter = serialize($this->params()->fromQuery());
             } else if ($action != 'login' && $method == 'POST') {
                 $parameter = serialize($controller->params()->fromPost());

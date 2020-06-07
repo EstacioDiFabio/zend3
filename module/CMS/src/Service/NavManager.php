@@ -73,24 +73,9 @@ class NavManager
                             'link' => $url('users')
                         ],
                         [
-                            'id' => 'jobs',
-                            'label' => '<i class="fas fa-id-badge"></i>  CARGOS',
-                            'link' => $url('jobs')
-                        ],
-                        [
-                            'id' => 'workGroup',
-                            'label' => '<i class="fas fa-users"></i> GRUPOS',
-                            'link' => $url('groups')
-                        ],
-                        [
                             'id' => 'departament',
                             'label' => '<i class="fas fa-chalkboard-teacher"></i> SETORES',
                             'link' => $url('departaments')
-                        ],
-                        [
-                            'id' => 'organizations',
-                            'label' => '<i class="fas fa-building"></i> UNIDADES',
-                            'link' => $url('organizations')
                         ],
                     ]
                 ];
@@ -140,80 +125,6 @@ class NavManager
                     array_push($items[1]['dropdown'], $array);
                 }
 
-            }
-
-            if ($this->checkPermission('quiz.manage') || $this->checkPermission('basic.manage')) {
-
-                $items[2] = [
-                    'id' => 'quiz',
-                    'label' => 'Questionário',
-                    'dropdown' => []
-                ];
-
-                if ($this->checkPermission('basic.manage')) {
-
-                    $array = [
-                        'id' => 'produto',
-                        'label' => '<i class="fas fa-cube"></i> PRODUTOS',
-                        'link' => $url('produto')
-                    ];
-
-                    array_push($items[2]['dropdown'], $array);
-                }
-
-                if ($this->checkPermission('quiz.manage')) {
-
-                    $array = [
-                        'id' => 'question-form',
-                        'label' => '<i class="far fa-window-maximize"></i> FORMULÁRIOS',
-                        'link' => $url('quizForm')
-                    ];
-
-                    array_push($items[2]['dropdown'], $array);
-
-                    $array = [
-                        'id' => 'question',
-                        'label' => '<i class="fas fa-question"></i> PERGUNTAS',
-                        'link' => $url('quiz')
-                    ];
-
-                    array_push($items[2]['dropdown'], $array);
-                }
-
-
-            }
-
-            if ($this->checkPermission('implantation.manage')) {
-
-                $items[3] = [
-                    'id' => 'implantation',
-                    'label' => 'IMPLANTAÇÃO',
-                    'dropdown' => []
-                ];
-
-                $array = [
-                    'id' => 'process_completed',
-                    'label' => '<i class="fas fa-handshake"></i> PROCESSO CONCLUÍDO',
-                    'link' => $url('implantation')
-                ];
-
-                array_push($items[3]['dropdown'], $array);
-
-                $array = [
-                    'id' => 'deployment_schedule',
-                    'label' => '<i class="fas fa-calendar-check"></i> AGENDA - TÉCNICO',
-                    'link' => $url('deployment_schedule')
-                ];
-
-                array_push($items[3]['dropdown'], $array);
-
-                $array = [
-                    'id' => 'client_scheduling',
-                    'label' => '<i class="fas fa-calendar-check"></i> AGENDA - CLIENTE',
-                    'link' => $url('client_scheduling')
-                ];
-
-                array_push($items[3]['dropdown'], $array);
             }
 
             $items[] = [

@@ -5,9 +5,6 @@ use Interop\Container\ContainerInterface;
 use CMS\Service\UserManager;
 use Auth\Service\RoleManager;
 use Auth\Service\PermissionManager;
-use CMS\Service\WorkGroupManager;
-use CMS\Service\DepartamentManager;
-use CMS\Service\OrganizationManager;
 use CMS\Service\CsecMail;
 
 /**
@@ -24,13 +21,8 @@ class UserManagerFactory
         $entityManager = $container->get('doctrine.entitymanager.orm_default');
         $roleManager = $container->get(RoleManager::class);
         $permissionManager = $container->get(PermissionManager::class);
-        $workGroupManager = $container->get(WorkGroupManager::class);
-        $departamentManager = $container->get(DepartamentManager::class);
-        $organizationManager = $container->get(OrganizationManager::class);
         $csecMail = $container->get(CsecMail::class);
 
-        return new UserManager($entityManager, $roleManager, $permissionManager,
-                               $workGroupManager, $departamentManager, $organizationManager,
-                               $csecMail);
+        return new UserManager($entityManager, $roleManager, $permissionManager, $csecMail);
     }
 }

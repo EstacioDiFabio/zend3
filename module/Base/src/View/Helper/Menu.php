@@ -90,9 +90,8 @@ class Menu extends AbstractHelper
 
 
             $result .= '<a class="navbar-brand" href="'.\Base\Module::ROOT_PATH.'">';
-                $result .= '<strong>WINDEL</strong>';
+                $result .= '<strong>CSEC</strong>';
             $result .= '</a>';
-
 
             $result .= '<div class="collapse navbar-collapse" id="navbar-csec">';
                 $result .= '<ul class="navbar-nav mr-auto">';

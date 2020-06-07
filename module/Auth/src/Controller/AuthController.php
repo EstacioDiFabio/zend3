@@ -10,7 +10,6 @@ use Auth\Form\LoginForm;
 use Auth\Form\PasswordResetForm;
 use CMS\V1\Entity\User;
 
-
 /**
  * This controller is responsible for letting the user to log in and log out.
  */
@@ -67,7 +66,7 @@ class AuthController extends CMSController
 
         // Check if user has submitted the form
         if ($this->getRequest()->isPost()) {
-
+            
             // Fill in the form with POST data
             $data = $this->params()->fromPost();
 

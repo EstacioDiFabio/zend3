@@ -89,7 +89,7 @@ class CsecMail
             }
 
             $message->setFrom('estacio.junior@csec.com.br', 'WINDEL');
-            $message->setSubject("WINDEL - ".$subject);
+            $message->setSubject("CSEC - ".$subject);
             $message->setBody($body);
             $message->setEncoding('UTF-8');
 
@@ -225,13 +225,11 @@ class CsecMail
                 <div class="col-md-12">
 
                     <div class="col-md-6">
-                        Csec Sistemas Ltda<br />
-                        Rua Tupy, 91 , Bairro: Pio X, Caxias do Sul - RS, CEP: 95034-520<br />
-                        Fone: (54) 3025-2540 | 0800 600 2220 | E-mail: comercial@csec.com.br<br />
+                        Csec Ltda<br />
                     </div>
                     <div class="col-md-6">
-                        <a href="'.($this->_base_testes==1 ? 'devel2.' : '').'csec.com.br">
-                            <img width="150" height="38" src="http://crm.csec.com.br/assets_custom/email/logo.jpg" />
+                        <a href="'.($this->_base_testes==1 ? 'develop2.' : '').'csec.com.br">
+                            <img width="150" height="38" src="http://csec.com.br/assets_custom/email/logo.jpg" />
                         </a>
                     </div>
 

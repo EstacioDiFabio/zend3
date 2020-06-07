@@ -3,10 +3,7 @@ namespace CMS\Service;
 
 use CMS\V1\Entity\User;
 use Auth\V1\Entity\Role;
-use CMS\V1\Entity\Job;
-use CMS\V1\Entity\WorkGroup;
 use CMS\V1\Entity\Departament;
-use CMS\V1\Entity\Organization;
 use Zend\Crypt\Password\Bcrypt;
 use Zend\Math\Rand;
 use Exception;
@@ -36,39 +33,16 @@ class UserManager
      */
     private $permissionManager;
 
-    /**
-     * WorkGroup manager.
-     * @var CMS\Service\WorkGroupManager
-     */
-    private $workGroupManager;
-
-    /**
-     * Departament manager.
-     * @var CMS\Service\DepartamentManager
-     */
-    private $departamentManager;
-
-    /**
-     * Organization manager.
-     * @var CMS\Service\OrganizationManager
-     */
-    private $organizationManager;
-
     private $csecMail;
 
     /**
      * Constructs the service.
      */
-    public function __construct($entityManager, $roleManager, $permissionManager,
-                                $workGroupManager, $departamentManager, $organizationManager,
-                                $csecMail)
+    public function __construct($entityManager, $roleManager, $permissionManager, $csecMail)
     {
         $this->entityManager = $entityManager;
         $this->roleManager = $roleManager;
         $this->permissionManager = $permissionManager;
-        $this->workGroupManager = $workGroupManager;
-        $this->departamentManager = $departamentManager;
-        $this->organizationManager = $organizationManager;
         $this->csecMail = $csecMail;
 
     }
@@ -110,12 +84,6 @@ class UserManager
 
             // Assign roles to user.
             $this->assignRoles($user, $data['roles']);
-            // Assign work_group to user.
-            $this->assignWorkGroup($user, $data['work_groups']);
-            // Assign work_group to user.
-            $this->assignDepartament($user, $data['departaments']);
-            // Assign work_group to user.
-            $this->assignOrganization($user, $data['organizations']);
             // Add the entity to the entity manager.
             $this->entityManager->persist($user);
             // Apply changes to database.
@@ -160,12 +128,6 @@ class UserManager
 
             // Assign roles to user.
             $this->assignRoles($user, $data['roles']);
-            // Assign work_group to user.
-            $this->assignWorkGroup($user, $data['work_groups']);
-            // Assign work_group to user.
-            $this->assignDepartament($user, $data['departaments']);
-            // Assign work_group to user.
-            $this->assignOrganization($user, $data['organizations']);
             // Apply changes to database.
             $this->entityManager->flush();
 
@@ -226,13 +188,7 @@ class UserManager
 
             if(isset($data['roles']))
                 $this->assignRoles($user, $data['roles']);
-            if(isset($data['work_groups']))
-                $this->assignWorkGroup($user, $data['work_groups']);
-            if(isset($data['departaments']))
-                $this->assignDepartament($user, $data['departaments']);
-            if($data['organizations'])
-                $this->assignOrganization($user, $data['organizations']);
-
+            
             // Apply changes to database.
             $this->entityManager->flush();
             $conn->commit();
@@ -291,106 +247,6 @@ class UserManager
                 $user->addRole($role);
             }
 
-            $conn->commit();
-
-        } catch (Exception $e) {
-            $conn->rollBack();
-            return $e->getMessage();
-        }
-
-    }
-
-    /**
-     * A helper method which assigns new work_group's to the user.
-     */
-    private function assignWorkGroup($user, $workGroupIds)
-    {
-        $conn = $this->entityManager->getConnection();
-        try {
-
-            $conn->beginTransaction();
-            // Remove old user role(s).
-            $user->getWorkGroup()->clear();
-
-            // Assign new role(s).
-            foreach ($workGroupIds as $groupId) {
-
-                $group = $this->entityManager->getRepository(WorkGroup::class)
-                        ->find($groupId);
-
-                if ($group==null) {
-                    throw new \Exception('Not found work_group by ID');
-                }
-
-                $user->addWorkGroup($group);
-            }
-            $conn->commit();
-        } catch (Exception $e) {
-            $conn->rollBack();
-            return $e->getMessage();
-        }
-
-    }
-
-    /**
-     * A helper method which assigns new departaments to the user.
-     */
-    private function assignDepartament($user, $departamentsId)
-    {
-        $conn = $this->entityManager->getConnection();
-        try {
-
-            $conn->beginTransaction();
-            // Remove old user role(s).
-            $user->getDepartament()->clear();
-
-            // Assign new role(s).
-            foreach ($departamentsId as $departamentId) {
-
-                $departament = $this->entityManager->getRepository(Departament::class)
-                        ->find($departamentId);
-
-                if ($departament==null) {
-                    throw new \Exception('Not found departament by ID');
-                }
-
-                $user->addDepartament($departament);
-            }
-
-            $conn->commit();
-
-        } catch (Exception $e) {
-            $conn->rollBack();
-            return $e->getMessage();
-        }
-
-    }
-
-    /**
-     * A helper method which assigns new organizations to the user.
-     */
-    private function assignOrganization($user, $organizationsId)
-    {
-        $conn = $this->entityManager->getConnection();
-
-        try {
-
-            $conn->beginTransaction();
-            // Remove old user role(s).
-            $user->getOrganization()->clear();
-
-            // Assign new role(s).
-            foreach ($organizationsId as $organizationId) {
-
-                $organization = $this->entityManager->getRepository(Organization::class)
-                        ->find($organizationId);
-
-                if ($organization==null) {
-                    throw new \Exception('Not found organization by ID');
-                }
-
-                $user->addOrganization($organization);
-            }
             $conn->commit();
 
         } catch (Exception $e) {

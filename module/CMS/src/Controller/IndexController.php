@@ -12,7 +12,6 @@ use Zend\View\Model\ViewModel;
 use Zend\Code\Reflection\ClassReflection;
 use CMS\V1\Entity\User;
 
-
 class IndexController extends CMSController
 {
 
@@ -33,10 +32,10 @@ class IndexController extends CMSController
      * Constructor.
      */
     public function __construct($entityManager, $authService)
-    {
+    { 
         $this->entityManager = $entityManager;
         $this->authService   = $authService;
-
+        
     }
 
     public function indexAction()

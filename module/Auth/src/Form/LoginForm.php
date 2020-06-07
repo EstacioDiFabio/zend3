@@ -122,7 +122,7 @@ class LoginForm extends Form
                     [
                         'name'    => 'StringLength',
                         'options' => [
-                            'min' => 6,
+                            'min' => 4,
                             'max' => 64
                         ],
                     ],
