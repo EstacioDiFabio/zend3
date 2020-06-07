@@ -51,40 +51,6 @@ class EventListener implements ListenerAggregateInterface
             }
         }
 
-        if (!empty($this->getImplantationControllers())) {
-
-            foreach ($this->getImplantationControllers() as $controller) {
-
-                $this->listeners[] = $sharedEvents->attach('Implantation\Controller\\'.$controller,
-                                               EventBase::EVENT_ACTIVITY_LOG,
-                                               [$this, 'onActivityLog'],
-                                               $priority);
-
-                $this->listeners[] = $sharedEvents->attach('Implantation\Controller\\'.$controller,
-                                               EventBase::EVENT_EXCEPTION_LOG,
-                                               [$this, 'onExceptionLog'],
-                                               $priority);
-
-            }
-        }
-
-        if (!empty($this->getQuizControllers())) {
-
-            foreach ($this->getQuizControllers() as $controller) {
-
-                $this->listeners[] = $sharedEvents->attach('Quiz\Controller\\'.$controller,
-                                               EventBase::EVENT_ACTIVITY_LOG,
-                                               [$this, 'onActivityLog'],
-                                               $priority);
-
-                $this->listeners[] = $sharedEvents->attach('Quiz\Controller\\'.$controller,
-                                               EventBase::EVENT_EXCEPTION_LOG,
-                                               [$this, 'onExceptionLog'],
-                                               $priority);
-
-            }
-        }
-
     }
 
     public function detach(EventManagerInterface $events)
@@ -116,7 +82,7 @@ class EventListener implements ListenerAggregateInterface
     public function getAuthControllers()
     {
 
-        $controllers = dir("./module/Implantation/src/Controller");
+        $controllers = dir("./module/Auth/src/Controller");
         $control = array();
 
         while (false !== ($entry = $controllers->read())) {
@@ -137,38 +103,6 @@ class EventListener implements ListenerAggregateInterface
         while (false !== ($entry = $controllers->read())) {
 
             if ($entry !== "Factory" && $entry !== "Plugin" && $entry !== "CMSController.php" && $entry !== '.' && $entry !== '..') {
-                array_push($control, substr($entry, 0, -4));
-            }
-        }
-
-        return $control;
-    }
-
-    public function getImplantationControllers()
-    {
-
-        $controllers = dir("./module/Implantation/src/Controller");
-        $control = array();
-
-        while (false !== ($entry = $controllers->read())) {
-
-            if ($entry !== "Factory" && $entry !== '.' && $entry !== '..') {
-                array_push($control, substr($entry, 0, -4));
-            }
-        }
-
-        return $control;
-    }
-
-    public function getQuizControllers()
-    {
-
-        $controllers = dir("./module/Quiz/src/Controller");
-        $control = array();
-
-        while (false !== ($entry = $controllers->read())) {
-
-            if ($entry !== "Factory" && $entry !== '.' && $entry !== '..') {
                 array_push($control, substr($entry, 0, -4));
             }
         }

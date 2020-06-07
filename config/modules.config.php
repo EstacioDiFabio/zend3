@@ -35,6 +35,4 @@ return [
     'Auth',
     'Base',
     'CMS',
-    'Implantation',
-    'Quiz'
 ];
